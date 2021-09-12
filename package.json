@@ -1,0 +1,25 @@
+{
+    "name": "endless-sky",
+    "displayName": "endless-sky",
+    "description": "Endless Sky data file support",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.60.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "endlesssky",
+            "aliases": ["Endless Sky data", "endlesssky"],
+            "extensions": [".txt"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "endlesssky",
+            "scopeName": "source.endlesssky",
+            "path": "./syntaxes/endlesssky.tmLanguage.json"
+        }]
+    }
+}
