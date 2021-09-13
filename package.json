@@ -3,7 +3,7 @@
     "displayName": "Endless Sky",
     "publisher": "thomasballinger",
     "icon": "icon.png",
-    "description": "Endless Sky data file support.",
+    "description": "Endless Sky data file support",
     "repository": "https://github.com/thomasballinger/endless-sky-vscode",
     "version": "0.1.3",
     "engines": {
