@@ -1,8 +1,9 @@
 {
     "name": "endless-sky-vscode",
-    "displayName": "Endless Sky data VSCode language support",
+    "displayName": "Endless Sky",
     "publisher": "thomasballinger",
-    "description": "Endless Sky data file support",
+    "icon": "icon.png",
+    "description": "Endless Sky data file support.",
     "repository": "https://github.com/thomasballinger/endless-sky-vscode",
     "version": "0.0.4",
     "engines": {
