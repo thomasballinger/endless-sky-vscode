@@ -12,7 +12,22 @@
 			"include": "#shipKeywords"
 		},
 		{
-			"include": "#strings"
+			"include": "#attributeKeywords"
+		},
+		{
+			"include": "#outfitKeywords"
+		},
+		{
+			"include": "#weaponKeywords"
+		},
+		{
+			"include": "#doubleQuoteStrings"
+		},
+		{
+			"include": "#backtickStrings"
+		},
+		{
+			"include": "#numbers"
 		}
 	],
 	"repository": {
@@ -25,8 +40,26 @@
 		"shipKeywords": {
 			"patterns": [{
 				"name": "keyword.control.endlesssky",
-				"match": "\\b(description|plural|noun|sprite|thumbnail|attributes|outfits|engine|reverse engine|steering engine|gun|turret|fighter|drone|bay|explode|final explode|load|never disabled|uncapturable|swizzle|attributes)\\b"
+				"match": "\\t((\"(final explode|never disabled)\")|((?<optionalquote>\"?)(description|plural|noun|sprite|thumbnail|((add )?attributes)|outfits|engine|load|uncapturable|swizzle|attributes|gun|turret|explode|bay|leak)\\k<optionalquote>))"
 			}]
+		},
+		"attributeKeywords": {
+			"patterns": [{
+				"name": "keyword.control.endlesssky",
+				"match": "\\t\\t((\"(required crew|heat dissipation|fuel capacity|cargo space|outfit space|weapon capacity|engine capacity|atmosphere scan)\")|((?<optionalquote>\"?)(category|licenses|cost|shields|hull|automaton|bunks|mass|drag|weapon)\\k<optionalquote>))"
+			}]
+		},
+		"outfitKeywords": {
+			"patterns": [{
+				"name": "keyword.control.endlesssky",
+				"match": "\\t((\"(outfit space|weapon capacity|gun ports|cloak|cloaking energy|cloaking fuel|unplunderable|outfit scan power|outfit scan speed|cargo scan power|cargo scan speed|atmosphere scan|tactical scan power|asteroid scan power|required crew|scan interference|capture attack|capture defense|radar jamming|jump speed|jump fuel|shield generation|shield energy|energy consumption|heat generation|scram drive|jump drive|cargo space|cooling inefficiency|heat dissipation|fuel capacity)\")|((?<optionalquote>\"?)(hyperdrive|illegal|map|ramscoop|bunks|cooling|category|licenses|cost|thumbnail|mass|weapon)\\k<optionalquote>))"
+			}]
+		},
+		"weaponKeywords": {
+			"patterns": [{
+				"name": "keyword.control.endlesssky",
+				"match": "\\t\\t((\"(blast radius|shield damage|hull damage|heat damage|hit force|hit effect|firing energy|firing heat)\")|((?<optionalquote>\"?)(ammo|icon|sprite|sound|inaccuracy|velocity|lifetime|reload)\\k<optionalquote>))"
+				}]
 		},
 		"keywords": {
 			"patterns": [{
@@ -34,10 +67,10 @@
 				"match": "\\b(add|and|or)\\b"
 			}]
 		},
-		"strings": {
+		"doubleQuoteStrings": {
 			"name": "string.quoted.double.endlesssky",
-			"begin": "\"|`",
-			"end": "\"|`",
+			"begin": "\"",
+			"end": "\"",
 			"patterns": [
 				{
 					"name": "constant.character.escape.endlesssky",
@@ -54,6 +87,31 @@
 					"match": "\\\\."
 				}
 			]
+		},
+		"backtickStrings": {
+			"name": "string.quoted.double.endlesssky",
+			"begin": "`",
+			"end": "`",
+			"patterns": [
+				{
+					"name": "constant.character.escape.endlesssky",
+					"match": "(<)(.*?)(>)",
+					"captures": {
+						"0": {"name": "meta.bold.example"},
+						"1": {"name": "punctuation.definition.bold.example"},
+						"2": {"name": "markup.bold.example"},
+						"3": {"name": "punctuation.definition.bold.example"}
+					}
+				},
+				{
+					"name": "constant.character.escape.endlesssky",
+					"match": "\\\\."
+				}
+			]
+		},
+		"numbers": {
+			"name": "constant.numeric",
+			"match": "[-]?(([0-9]*[.][0-9]+)|([0-9]+))"
 		}
 	},
 	"scopeName": "source.endlesssky"
