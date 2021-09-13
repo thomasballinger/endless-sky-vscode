@@ -1,6 +1,6 @@
 {
-    "name": "endless-sky",
-    "displayName": "endless-sky",
+    "name": "endless-sky-vscode",
+    "displayName": "Endless Sky data VSCode language support",
     "description": "Endless Sky data file support",
     "version": "0.0.1",
     "engines": {
