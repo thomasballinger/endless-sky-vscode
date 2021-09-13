@@ -4,7 +4,7 @@
     "publisher": "thomasballinger",
     "description": "Endless Sky data file support",
     "repository": "https://github.com/thomasballinger/endless-sky-vscode",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "engines": {
         "vscode": "^1.60.0"
     },
@@ -12,16 +12,25 @@
         "Programming Languages"
     ],
     "contributes": {
-        "languages": [{
-            "id": "endlesssky",
-            "aliases": ["Endless Sky data", "endlesssky"],
-            "extensions": [".txt"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "endlesssky",
-            "scopeName": "source.endlesssky",
-            "path": "./syntaxes/endlesssky.tmLanguage.json"
-        }]
+        "languages": [
+            {
+                "id": "endlesssky",
+                "aliases": [
+                    "Endless Sky data",
+                    "endlesssky"
+                ],
+                "extensions": [
+                    ".txt"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "endlesssky",
+                "scopeName": "source.endlesssky",
+                "path": "./syntaxes/endlesssky.tmLanguage.json"
+            }
+        ]
     }
 }
