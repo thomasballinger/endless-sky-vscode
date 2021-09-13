@@ -7,13 +7,16 @@
 		},
 		{
 			"include": "#strings"
+		},
+		{
+			"include": "#multilinestrings"
 		}
 	],
 	"repository": {
 		"keywords": {
 			"patterns": [{
 				"name": "keyword.control.endlesssky",
-				"match": "\\b(if|while|for|return)\\b"
+				"match": "\\b(color|conversation|effect|event|fleet|galaxy|government|hazard|interface|minable|mission|outfit|outfitter|person|phrase|planet|ship|shipyard|start|system|test|test-data|trade|landing message|star|news|rating|category|tip)\\b"
 			}]
 		},
 		"strings": {
@@ -23,9 +26,41 @@
 			"patterns": [
 				{
 					"name": "constant.character.escape.endlesssky",
+					"match": "(<)(.*?)(>)",
+					"captures": {
+						"0": {"name": "meta.bold.example"},
+						"1": {"name": "punctuation.definition.bold.example"},
+						"2": {"name": "markup.bold.example"},
+						"3": {"name": "punctuation.definition.bold.example"}
+					}
+				},
+				{
+					"name": "constant.character.escape.endlesssky",
 					"match": "\\\\."
 				}
 			]
+		},
+		"multilinestrings": {
+			"name": "string.quoted.backtick.endlesssky",
+			"begin": "`",
+			"end": "`",
+			"patterns": [
+				{
+					"name": "constant.character.escape.endlesssky",
+					"match": "(<)(.*?)(>)",
+					"captures": {
+						"0": {"name": "meta.bold.example"},
+						"1": {"name": "punctuation.definition.bold.example"},
+						"2": {"name": "markup.bold.example"},
+						"3": {"name": "punctuation.definition.bold.example"}
+					}
+				},
+				{
+					"name": "constant.character.escape.endlesssky",
+					"match": "\\\\."
+				}
+			]
+
 		}
 	},
 	"scopeName": "source.endlesssky"
