@@ -40,7 +40,7 @@
 		"keywords": {
 			"patterns": [{
 				"name": "keyword.control.endlesssky",
-				"match": "\\b(add|and|or)\\b"
+				"match": "\\b(add|and|or|add attributes)\\b"
 			}]
 		},
 		"doubleQuoteStrings": {
