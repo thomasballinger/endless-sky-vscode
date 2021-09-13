@@ -1,0 +1,73 @@
+active cooling
+asteroid scan power
+atmosphere scan
+automaton
+bunks
+capture attack
+capture defense
+cargo scan power
+cargo scan speed
+cargo space
+category
+cloak
+cloaking energy
+cloaking fuel
+cooling
+cooling energy
+cooling inefficiency
+core crystal
+cost
+crystal projector
+energy consumption
+engine capacity
+flare sound
+flare sprite
+fuel capacity
+gun ports
+heat dissipation
+heat generation
+hull energy
+hull heat
+hyperdrive
+illegal
+jump drive
+jump fuel
+jump speed
+licenses
+map
+mass
+outfit scan power
+outfit scan speed
+outfit space
+phasing
+piercing
+quantum keystone
+radar jamming
+ramscoop
+required crew
+reverse flare sound
+reverse flare sprite
+reverse thrust
+reverse thrusting energy
+reverse thrusting heat
+safe
+scan interference
+scram drive
+shield energy
+shield generation
+shooting star
+spinal mount
+steering flare sound
+steering flare sprite
+tactical scan power
+thrust
+thrusting energy
+thrusting heat
+thumbnail
+turn
+turning energy
+turning heat
+turret mounts
+unplunderable
+weapon
+weapon capacity

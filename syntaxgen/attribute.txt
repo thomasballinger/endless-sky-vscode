@@ -1,0 +1,28 @@
+afterburner fuel
+afterburner heat
+afterburner thrust
+atmosphere scan
+automaton
+bunks
+cargo space
+category
+core crystal
+cost
+crystal projector
+drag
+engine capacity
+fuel capacity
+heat dissipation
+hull
+hull repair
+licenses
+mass
+outfit space
+required crew
+shields
+shooting star
+solar collection
+spinal mount
+threshold percentage
+weapon
+weapon capacity

@@ -1,4 +1,7 @@
 {
+    "scripts": {
+        "syntaxgen": "node syntaxgen/gen.js > syntaxes/endlesssky.tmLanguage.json"
+    },
     "name": "endless-sky-vscode",
     "displayName": "Endless Sky",
     "publisher": "thomasballinger",

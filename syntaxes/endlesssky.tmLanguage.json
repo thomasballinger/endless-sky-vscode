@@ -31,35 +31,35 @@
 		}
 	],
 	"repository": {
-		"topLevelKeywords": {
-			"patterns": [{
-				"name": "keyword.control.endlesssky",
-				"match": "^(color|conversation|effect|event|fleet|galaxy|government|hazard|interface|minable|mission|outfit|outfitter|person|phrase|planet|ship|shipyard|start|system|test|test-data|trade|landing message|star|news|rating|category|tip)\\b"
-			}]
-		},
 		"shipKeywords": {
 			"patterns": [{
 				"name": "keyword.control.endlesssky",
-				"match": "\\t((\"(final explode|never disabled|reverse engine|energy capacity|energy generation|hull repair rate|shield heat)\")|((?<optionalquote>\"?)(description|plural|noun|sprite|thumbnail|((add )?attributes)|outfits|engine|load|uncapturable|swizzle|attributes|gun|turret|explode|bay|leak)\\k<optionalquote>))"
+				"match": "\\t((\"(add attributes|energy capacity|energy generation|final explode|hull repair rate|never disabled|reverse engine|shield heat)\")|((?<optionalquote>\"?)(attributes|attributes|bay|description|engine|explode|gun|leak|load|noun|outfits|plural|sprite|swizzle|thumbnail|turret|uncapturable)\\k<optionalquote>))" 
 			}]
 		},
 		"attributeKeywords": {
 			"patterns": [{
 				"name": "keyword.control.endlesssky",
-				"match": "\\t\\t((\"(required crew|heat dissipation|fuel capacity|cargo space|outfit space|weapon capacity|engine capacity|atmosphere scan|afterburner fuel|afterburner heat|solar collection|afterburner thrust|threshold percentage|hull repair|spinal mount|crystal projector|shooting star|core crystal)\")|((?<optionalquote>\"?)(category|licenses|cost|shields|hull|automaton|bunks|mass|drag|weapon)\\k<optionalquote>))"
+				"match": "\\t((\"(afterburner fuel|afterburner heat|afterburner thrust|atmosphere scan|cargo space|core crystal|crystal projector|engine capacity|fuel capacity|heat dissipation|hull repair|outfit space|required crew|shooting star|solar collection|spinal mount|threshold percentage|weapon capacity)\")|((?<optionalquote>\"?)(automaton|bunks|category|cost|drag|hull|licenses|mass|shields|weapon)\\k<optionalquote>))" 
 			}]
 		},
 		"outfitKeywords": {
 			"patterns": [{
 				"name": "keyword.control.endlesssky",
-				"match": "\\t((\"(outfit space|weapon capacity|gun ports|cloak|cloaking energy|cloaking fuel|outfit scan power|outfit scan speed|cargo scan power|cargo scan speed|atmosphere scan|tactical scan power|asteroid scan power|required crew|scan interference|capture attack|capture defense|radar jamming|jump speed|jump fuel|shield generation|shield energy|energy consumption|heat generation|scram drive|jump drive|cargo space|cooling inefficiency|heat dissipation|fuel capacity|engine capacity|turning energy|turning heat|steering flare sprite|steering flare sound|thrusting energy|thrusting heat|flare sprite|flare sound|hull energy|hull heat|active cooling|cooling energy|reverse thrust|reverse thrusting energy|reverse thrusting heat|reverse flare sprite|reverse flare sound|turret mounts|crystal projector|spinal mount|shooting star|core crystal|quantum keystone)\")|((?<optionalquote>\"?)(thrust|turn|hyperdrive|illegal|map|ramscoop|bunks|cooling|category|licenses|cost|thumbnail|mass|weapon|unplunderable|automaton|phasing|piercing|safe)\\k<optionalquote>))"
+				"match": "\\t((\"(active cooling|asteroid scan power|atmosphere scan|capture attack|capture defense|cargo scan power|cargo scan speed|cargo space|cloaking energy|cloaking fuel|cooling energy|cooling inefficiency|core crystal|crystal projector|energy consumption|engine capacity|flare sound|flare sprite|fuel capacity|gun ports|heat dissipation|heat generation|hull energy|hull heat|jump drive|jump fuel|jump speed|outfit scan power|outfit scan speed|outfit space|quantum keystone|radar jamming|required crew|reverse flare sound|reverse flare sprite|reverse thrust|reverse thrusting energy|reverse thrusting heat|scan interference|scram drive|shield energy|shield generation|shooting star|spinal mount|steering flare sound|steering flare sprite|tactical scan power|thrusting energy|thrusting heat|turning energy|turning heat|turret mounts|weapon capacity)\")|((?<optionalquote>\"?)(automaton|bunks|category|cloak|cooling|cost|hyperdrive|illegal|licenses|map|mass|phasing|piercing|ramscoop|safe|thrust|thumbnail|turn|unplunderable|weapon)\\k<optionalquote>))" 
 			}]
 		},
 		"weaponKeywords": {
 			"patterns": [{
 				"name": "keyword.control.endlesssky",
-				"match": "\\t\\t((\"(blast radius|shield damage|hull damage|heat damage|hit force|hit effect|firing energy|firing heat|fire effect|firing fuel|firing force|hardpoint sprite|hardpoint offset|turret turn|ion damage|turrent mounts|submunition|random lifetime|burset reload|burst count|acceleration|homing|radar tracking|missile strength|die effect|disruption damage)\")|((?<optionalquote>\"?)(anti-missile|ammo|icon|sprite|sound|inaccuracy|velocity|lifetime|reload)\\k<optionalquote>))"
-				}]
+				"match": "\\t((\"(blast radius|burset reload|burst count|die effect|disruption damage|fire effect|firing energy|firing force|firing fuel|firing heat|hardpoint offset|hardpoint sprite|heat damage|hit effect|hit force|hull damage|ion damage|missile strength|radar tracking|random lifetime|shield damage|turrent mounts|turret turn)\")|((?<optionalquote>\"?)(acceleration|ammo|anti-missile|homing|icon|inaccuracy|lifetime|reload|sound|sprite|submunition|velocity)\\k<optionalquote>))" 
+			}]
+		},
+		"topLevelKeywords": {
+			"patterns": [{
+				"name": "keyword.control.endlesssky",
+				"match": "^(color|conversation|effect|event|fleet|galaxy|government|hazard|interface|minable|mission|outfit|outfitter|person|phrase|planet|ship|shipyard|start|system|test|test-data|trade|landing message|star|news|rating|category|tip)\\b"
+			}]
 		},
 		"keywords": {
 			"patterns": [{

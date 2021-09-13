@@ -1,0 +1,25 @@
+add attributes
+attributes
+attributes
+bay
+description
+energy capacity
+energy generation
+engine
+explode
+final explode
+gun
+hull repair rate
+leak
+load
+never disabled
+noun
+outfits
+plural
+reverse engine
+shield heat
+sprite
+swizzle
+thumbnail
+turret
+uncapturable

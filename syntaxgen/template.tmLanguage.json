@@ -1,0 +1,94 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Endless Sky data",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#topLevelKeywords"
+		},
+		{
+			"include": "#shipKeywords"
+		},
+		{
+			"include": "#attributeKeywords"
+		},
+		{
+			"include": "#outfitKeywords"
+		},
+		{
+			"include": "#weaponKeywords"
+		},
+		{
+			"include": "#doubleQuoteStrings"
+		},
+		{
+			"include": "#backtickStrings"
+		},
+		{
+			"include": "#numbers"
+		}
+	],
+	"repository": {
+		"topLevelKeywords": {
+			"patterns": [{
+				"name": "keyword.control.endlesssky",
+				"match": "^(color|conversation|effect|event|fleet|galaxy|government|hazard|interface|minable|mission|outfit|outfitter|person|phrase|planet|ship|shipyard|start|system|test|test-data|trade|landing message|star|news|rating|category|tip)\\b"
+			}]
+		},
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.control.endlesssky",
+				"match": "\\b(add|and|or)\\b"
+			}]
+		},
+		"doubleQuoteStrings": {
+			"name": "string.quoted.double.endlesssky",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.endlesssky",
+					"match": "(<)(.*?)(>)",
+					"captures": {
+						"0": {"name": "meta.bold.example"},
+						"1": {"name": "punctuation.definition.bold.example"},
+						"2": {"name": "markup.bold.example"},
+						"3": {"name": "punctuation.definition.bold.example"}
+					}
+				},
+				{
+					"name": "constant.character.escape.endlesssky",
+					"match": "\\\\."
+				}
+			]
+		},
+		"backtickStrings": {
+			"name": "string.quoted.double.endlesssky",
+			"begin": "`",
+			"end": "`",
+			"patterns": [
+				{
+					"name": "constant.character.escape.endlesssky",
+					"match": "(<)(.*?)(>)",
+					"captures": {
+						"0": {"name": "meta.bold.example"},
+						"1": {"name": "punctuation.definition.bold.example"},
+						"2": {"name": "markup.bold.example"},
+						"3": {"name": "punctuation.definition.bold.example"}
+					}
+				},
+				{
+					"name": "constant.character.escape.endlesssky",
+					"match": "\\\\."
+				}
+			]
+		},
+		"numbers": {
+			"name": "constant.numeric",
+			"match": "[-]?(([0-9]*[.][0-9]+)|([0-9]+))"
+		}
+	},
+	"scopeName": "source.endlesssky"
+}
