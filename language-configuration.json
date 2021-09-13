@@ -18,5 +18,14 @@
     "surroundingPairs": [
         ["\"", "\""],
         ["`", "`"]
+    ],
+    // onEnterRules
+    "onEnterRules": [
+        {
+            // ths is a haphazard list, I think we'll want to generate this with code instead.
+            // some of these require no indentation (they're a definition) others can happen anywhere
+            "beforeText": "(^(conversation|effect|event|fleet|galaxy|government|hazard|interface|minable|mission|outfit|outfitter|person|phrase|planet|ship|shipyard|start|system|test|test-data|trade|landing message|star|news|rating|category|tip))|(^\\s*(add)?\\s*\"?(?:choice|branch|apply|text|event|outfits|attributes|system|phrase|word|weapon|sprite|flare sprite|steering flare sprite|object|tribute|arrival|star|name|location|message|attitude toward|penalty for|enforces|personality|variant|replace).*?\\s*$)",
+            "action": { "indent": "indent" }
+        }
     ]
 }

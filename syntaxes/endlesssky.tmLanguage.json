@@ -31,7 +31,7 @@
 		"keywords": {
 			"patterns": [{
 				"name": "keyword.control.endlesssky",
-				"match": "\\b(add)\\b"
+				"match": "\\b(add|and|or)\\b"
 			}]
 		},
 		"strings": {
