@@ -1,0 +1,19 @@
+{
+    "name": "endless-sky-lsp",
+    "description": "Endless Sky data file language protocol server",
+    "version": "0.0.1",
+    "author": "Thomas Ballinger",
+    "license": "GPLv3",
+    "engines": {
+        "node": "*"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/thomasballinger/endless-sky-vscode"
+    },
+    "dependencies": {
+        "endless-sky-bindings": "0.1.11",
+        "vscode-languageserver": "^7.0.0",
+        "vscode-languageserver-textdocument": "^1.0.1"
+    }
+}

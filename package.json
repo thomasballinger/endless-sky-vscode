@@ -1,10 +1,16 @@
 {
     "scripts": {
-        "syntaxgen": "node syntaxgen/gen.js > syntaxes/endlesssky.tmLanguage.json"
+        "vscode:prepublish": "npm run syntaxgen && npm run compile",
+        "compile": "tsc -b",
+        "syntaxgen": "node syntaxgen/gen.js > syntaxes/endlesssky.tmLanguage.json",
+        "watch": "tsc -b -w",
+        "lint": "eslint ./client/src ./server/src --ext .ts,.tsx",
+        "postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
+        "test": "npx mocha -r ts-node/register **/*.test.ts"
     },
     "name": "endless-sky-vscode",
     "displayName": "Endless Sky",
-    "license": "GPLv3",
+    "license": "GPL-3.0-or-later",
     "publisher": "thomasballinger",
     "icon": "icon.png",
     "description": "Endless Sky data file support",
@@ -15,6 +21,22 @@
     },
     "categories": [
         "Programming Languages"
+    ],
+    "devDependencies": {
+        "@types/mocha": "^8.2.2",
+        "@types/node": "^12.12.0",
+        "@types/vscode": "^1.60.0",
+        "@typescript-eslint/eslint-plugin": "^4.31.1",
+        "@typescript-eslint/parser": "^4.31.1",
+        "@vscode/test-electron": "^1.6.1",
+        "eslint": "^7.32.0",
+        "mocha": "^8.3.2",
+        "ts-node": "^10.2.1",
+        "typescript": "^4.4.3"
+    },
+    "main": "./client/out/extension",
+    "activationEvents": [
+        "onLanguage:endlesssky"
     ],
     "contributes": {
         "languages": [
@@ -30,6 +52,29 @@
                 "configuration": "./language-configuration.json"
             }
         ],
+        "configuration": {
+            "type": "object",
+            "title": "Endless Sky configuration",
+            "properties": {
+                "endlesssky.executablePath": {
+                    "scope": "machine",
+                    "type": "string",
+                    "default": "/Applications/Endless Sky.app/Contents/MacOS/Endless Sky",
+                    "description": "Which installation or repo checkout of Endless Sky to use."
+                },
+                "endlesssky.trace.server": {
+                    "scope": "window",
+                    "type": "string",
+                    "enum": [
+                        "off",
+                        "messages",
+                        "verbose"
+                    ],
+                    "default": "off",
+                    "description": "Traces the communication between VS Code and the language server."
+                }
+            }
+        },
         "grammars": [
             {
                 "language": "endlesssky",

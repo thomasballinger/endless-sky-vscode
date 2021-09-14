@@ -1,5 +1,7 @@
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path, { dirname } from "path";
+import process from "process";
+import { fileURLToPath } from "url";
 
 function patternFromFile(filename) {
   const keywords = fs
@@ -9,8 +11,8 @@ function patternFromFile(filename) {
 
   const name = path.basename(filename, ".txt");
 
-  multiWord = keywords.filter((w) => w.includes(" "));
-  singleWord = keywords.filter((w) => !w.includes(" "));
+  const multiWord = keywords.filter((w) => w.includes(" "));
+  const singleWord = keywords.filter((w) => !w.includes(" "));
 
   const pat = `"\\\\t((\\"(${multiWord.join(
     "|"
@@ -28,7 +30,8 @@ function patternFromFile(filename) {
 }
 
 function language() {
-  files = ["ship.txt", "attribute.txt", "outfit.txt", "weapon.txt"];
+  const files = ["ship.txt", "attribute.txt", "outfit.txt", "weapon.txt"];
+  const __dirname = dirname(fileURLToPath(import.meta.url));
   const template = fs.readFileSync(
     __dirname + "/template.tmLanguage.json",
     "utf8"

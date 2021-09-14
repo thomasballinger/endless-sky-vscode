@@ -1,0 +1,21 @@
+{
+    "name": "endless-sky-lsp-client",
+    "description": "VSCode part of a language server",
+    "version": "0.0.1",
+    "author": "Thomas Ballinger",
+    "license": "GPLv3",
+    "engines": {
+        "vscode": "^1.60.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/thomasballinger/endless-sky-vscode"
+    },
+    "dependencies": {
+        "vscode-languageclient": "^7.0.0"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.60.0",
+        "@vscode/test-electron": "^1.6.1"
+    }
+}
