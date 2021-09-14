@@ -4,6 +4,7 @@
     },
     "name": "endless-sky-vscode",
     "displayName": "Endless Sky",
+    "license": "GPLv3",
     "publisher": "thomasballinger",
     "icon": "icon.png",
     "description": "Endless Sky data file support",
