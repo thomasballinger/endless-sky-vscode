@@ -9,7 +9,7 @@
     "icon": "icon.png",
     "description": "Endless Sky data file support",
     "repository": "https://github.com/thomasballinger/endless-sky-vscode",
-    "version": "0.1.5",
+    "version": "0.1.6",
     "engines": {
         "vscode": "^1.60.0"
     },
