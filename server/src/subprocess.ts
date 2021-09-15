@@ -203,7 +203,7 @@ const parseErrors = (
 
   const errors = [];
   for (const s of traceCandidates) {
-    const m = s.match(/file (?<file>.*)/);
+    const m = s.match(/file (?<quote>"?)(?<file>.*)\k<quote>/);
     if (!m || !m.groups) continue;
 
     const { file } = m.groups;

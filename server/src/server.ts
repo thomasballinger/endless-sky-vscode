@@ -12,8 +12,9 @@ import {
   TextDocumentSyncKind,
   InitializeResult,
 } from "vscode-languageserver/node";
-import { URL } from "url";
+
 import * as fs from 'fs';
+import * as url from 'url';
 
 import { TextDocument } from "vscode-languageserver-textdocument";
 import {
@@ -136,11 +137,15 @@ documents.onDidOpen(change => {
 });
 
 async function validateFromDisk(textDocument: TextDocument): Promise<void> {
-  const path = new URL(textDocument.uri).pathname;
+  const path = url.fileURLToPath(textDocument.uri);
   const settings = await getDocumentSettings(textDocument.uri);
 
   const isCore = isCoreDataFile(path);
-  console.log('parsing data files as though they are core files:', isCore);
+  if (isCore) {
+    console.log('parsing data files as though they are core files');
+  } else {
+    console.log('parsing data files as though they are a plugin');
+  }
   const pluginDir = getPluginDir(path);
   const issues = [];
   if (isCore) {
@@ -148,9 +153,14 @@ async function validateFromDisk(textDocument: TextDocument): Promise<void> {
   } else if (pluginDir) {
     issues.push(...(await parsePluginWithSubprocess(pluginDir, settings.executablePath)));
   }
+  console.log(`found ${issues.length} issues`)
   //console.log(path, issues);
   const fileIssues = issues.filter((i) => i.file === path);
   //console.log(path, fileIssues);
+  console.log(`...of which ${fileIssues.length} match the queried path '${path}'`);
+  if (issues.length && !fileIssues.length) {
+    console.log(`no matching issues, file paths look like '${issues[0].file}''`);
+  }
 
   const diagnostics = [];
   for (const issue of fileIssues) {
