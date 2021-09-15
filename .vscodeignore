@@ -1,4 +1,7 @@
-.vscode/**
-.vscode-test/**
+.vscode
+client
+server
+.tsconfig
+.node_modules
 .gitignore
-vsc-extension-quickstart.md
+syntaxgen
