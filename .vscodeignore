@@ -1,7 +1,17 @@
-.vscode
-client
-server
-.tsconfig
-.node_modules
-.gitignore
-syntaxgen
+# Ignore everything
+*
+*/**
+# Include the two esbuild output files
+# Ignore everything
+/*
+
+# Whitelist needed files
+!client/out/extension.js
+!client/out/extension.js.map
+!server/out/server.js
+!server/out/server.js.map
+!syntaxes/endlesssky.tmLanguage.json
+!language-configuration.json
+!icon.png
+!README.md
+!package.json
