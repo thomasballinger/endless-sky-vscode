@@ -29,8 +29,6 @@ export const getPluginDir = (filePath: string): string | undefined => {
   const dataDir = getDataDir(filePath);
   if (!dataDir) return undefined;
   return path.dirname(dataDir);
-  const parts = path.resolve(filePath).split(path.sep);
-  return path.join(...parts.slice(0, parts.lastIndexOf("data")));
 };
 
 export const getResourcesDir = (filePath: string): string | undefined => {

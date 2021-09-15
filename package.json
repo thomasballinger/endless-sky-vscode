@@ -53,8 +53,8 @@
                 "endlesssky.executablePath": {
                     "scope": "machine",
                     "type": "string",
-                    "default": "/Applications/Endless Sky.app/Contents/MacOS/Endless Sky",
-                    "description": "Which installation or repo checkout of Endless Sky to use."
+                    "default": "",
+                    "description": "Path to the Endless Sky executable (should end in .exe on Windows) to use for linting."
                 },
                 "endlesssky.trace.server": {
                     "scope": "window",

@@ -34,9 +34,21 @@ function getEslauncher2Executables(
   return executables;
 }
 
-export function getExecutable(): string | undefined {
+// Return the executable to use for linting.
+export function getExecutable(preferencesExecutable?: string | undefined): string | undefined {
+  // If a path is specified in preferencs, use it and only it!
+  if (preferencesExecutable) {
+    if (existsSync(preferencesExecutable)) {
+      return preferencesExecutable;
+    } else {
+      console.log('bad executable from preferences!');
+      return undefined
+    }
+  }
+
   const candidates = [];
   // TODO add steam locations for all platforms
+
   if (platform === "darwin") {
     candidates.push("/Applications/Endless Sky.app/Contents/MacOS/Endless Sky");
     const eslauncher2 = path.join(
@@ -61,13 +73,6 @@ export function getExecutable(): string | undefined {
   // TODO add Linux locations
   const executable = candidates.filter((p) => existsSync(p))[0];
   return executable;
-}
-
-async function output() {
-  const executable = getExecutable();
-  if (executable) {
-    execFile(executable, ["-s"]);
-  }
 }
 
 type PreparedFilesystemOptions = {
@@ -142,7 +147,7 @@ export const parseCoreDataWithSubprocess = async (
       if (executable && !existsSync(executable)) {
         throw new Error("bad executable set in preferences!");
       }
-      executable = executable || getExecutable(); // empty string is falsy
+      executable = getExecutable(executable);
       if (!executable) {
         throw new Error(
           "No executable found! Please set the endlesssky executable location in settings."
@@ -172,7 +177,7 @@ export const parsePluginWithSubprocess = async (
     { pluginDir },
     async ({ config, resources, tmpPlugin }) => {
       tmpPath = tmpPlugin;
-      executable = executable || getExecutable(); // empty string is falsy
+      executable = getExecutable(executable);
       if (!executable) {
         throw new Error(
           "No executable found! Please set the endlesssky executable location in settings."
