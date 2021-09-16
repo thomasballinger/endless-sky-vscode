@@ -159,6 +159,7 @@ export const parseCoreDataWithSubprocess = async (
   resourceDir: string,
   executable?: string
 ) => {
+  console.log('resourceDir:', resourceDir);
   const output = await withPreparedFilesystem(
     { resources: resourceDir },
     async ({ config, resources }) => {
@@ -172,6 +173,7 @@ export const parseCoreDataWithSubprocess = async (
         );
         // TODO propagate this to the client
       }
+      console.log('resources:', resources);
       const { stderr } = await execFileP(executable, [
         "-s",
         "--config",
@@ -179,6 +181,7 @@ export const parseCoreDataWithSubprocess = async (
         "--resources",
         resources,
       ]);
+      console.log('stderr:', util.inspect(stderr))
       return stderr;
     }
   );
