@@ -1,6 +1,6 @@
 import { exec, execFile } from "child_process";
 import { homedir, tmpdir } from "os";
-import { platform } from "process";
+import { platform, env } from "process";
 import {
   readdirSync,
   existsSync,
@@ -36,7 +36,25 @@ function getEslauncher2Executables(
 
 // Return the executable to use for linting.
 export function getExecutable(preferencesExecutable?: string | undefined): string | undefined {
-  // If a path is specified in preferencs, use it and only it!
+  if (env.CI) {
+    let hardcoded;
+    // Use hardcoded paths in CI
+    if (platform === "linux") {
+      hardcoded = 'es/endless-sky';
+    } else if (platform === 'darwin') {
+      hardcoded = 'Endless Sky.app/Contents/MacOS/Endless Sky';
+    } else if (platform === 'win32') {
+      hardcoded = 'es/EndlessSky.exe';
+    } else {
+      throw new Error('unsupported platform');
+    }
+    if (!existsSync(hardcoded)) {
+      throw new Error("bad CI environment, provide Endless Sky executable");
+    }
+    return hardcoded;
+  }
+
+  // If a path is specified in preferences, use it and only it!
   if (preferencesExecutable) {
     if (existsSync(preferencesExecutable)) {
       return preferencesExecutable;
@@ -191,6 +209,7 @@ export const parsePluginWithSubprocess = async (
         "--resources",
         resources,
       ]);
+      //console.log('stderr from Endless Sky:', util.inspect(stderr));
       return stderr;
     }
   );
@@ -219,14 +238,16 @@ export const parseErrors = (
   output: string,
   fileResolver?: (path: string) => string
 ): { file?: string; lineno?: number; message: string, fullMessage: string, pat: string }[] => {
-  console.log('full es stderr output:')
-  console.log(output);
+  //console.log('full es stderr output:')
+  //console.log(output);
   const r = (path: string) => {
     if (!fileResolver) return path;
     return fileResolver(path);
   }
+  // Windows line endings!
+  let s = output.replace(/\r\n/g, '\n');
   // add a \n at the beginning to avoid missing first message
-  const s = '\n' + output;
+  s = '\n' + s;
 
   const errors = [];
 

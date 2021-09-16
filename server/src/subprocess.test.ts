@@ -58,8 +58,9 @@ describe("Endless Sky and the filesystem", () => {
         });
     });
 
-    describe("parseWithSubprocess", () => {
-        it("should be able to read diagnostics", async () => {
+    describe("parseWithSubprocess", function () {
+        this.timeout(15000); // mac was exceeding 2000ms
+        it("should be able to read stderr warnings", async () => {
             const output = await parsePluginWithSubprocess(pluginDir);
             assert.deepStrictEqual(output.map(o => {
                 const { fullMessage, ...rest } = o;
