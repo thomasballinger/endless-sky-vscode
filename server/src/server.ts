@@ -164,13 +164,13 @@ async function validateFromDisk(textDocument: TextDocument): Promise<void> {
 
   const diagnostics = [];
   for (const issue of fileIssues) {
-    textDocument.positionAt;
+    if (!issue.lineno || !issue.file) continue;  // TODO locate entities
     const diagnostic: Diagnostic = {
       severity: DiagnosticSeverity.Warning,
       range: {
-        start: { line: issue.linenos[issue.linenos.length - 1] - 1, character: 0 },
+        start: { line: issue.lineno - 1, character: 0 },
         end: {
-          line: issue.linenos[issue.linenos.length - 1] - 1,
+          line: issue.lineno - 1,
           character: 100000,
         },
       },
@@ -184,9 +184,9 @@ async function validateFromDisk(textDocument: TextDocument): Promise<void> {
           location: {
             uri: textDocument.uri,
             range: {
-              start: { line: issue.linenos[issue.linenos.length - 1] - 1, character: 0 },
+              start: { line: issue.lineno - 1, character: 0 },
               end: {
-                line: issue.linenos[issue.linenos.length - 1] - 1,
+                line: issue.lineno - 1,
                 character: 100000,
               },
             }

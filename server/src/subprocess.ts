@@ -200,36 +200,67 @@ export const parsePluginWithSubprocess = async (
   );
 };
 
-const parseErrors = (
+// DataNode::PrintTrace() always writes a blank line at the beginning
+// essages can't begin with ( because shipEntityErrors have that (and might not have a blank line)
+export const dataNodeError = /(?<=\n\n)(?<msg>.*)\nfile (?<quote>"?)(?<file>.*)\k<quote>(\nL(?<lineno>[0-9]+):(?<line>.*))+(?=\n)/g;
+
+// Files::LogError always adds a newline, so sensible messages ending in \n
+// produce a blank line after
+export const shipEntityError = /(?<=\n)(?<entity>[(][^()]+(?<variant>[(][^()]*[)])?[)]):\n(?<msg>.*)\nhas outfits:(?<outfit>\n\t.*)*(?=\n\n)/g;
+
+// Argosy: outfit "Me..." is equipped but not included
+// these don't have blank lines on either side
+export const shipMissingEquippedOutfit = /(?<=\n)(?<entity>.*?): (?<msg>outfit "(?<outfit>.*?)".*[.])(?=\n)/g;
+
+
+
+// exported for testing
+export const parseErrors = (
   output: string,
   fileResolver?: (path: string) => string
-): { file: string; linenos: number[]; message: string, fullMessage: string }[] => {
-  const traceCandidates = output.split("\n\n");
+): { file?: string; lineno?: number; message: string, fullMessage: string, pat: string }[] => {
+  console.log('full es stderr output:')
+  console.log(output);
+  const r = (path: string) => {
+    if (!fileResolver) return path;
+    return fileResolver(path);
+  }
+  // add a \n at the beginning to avoid missing first message
+  const s = '\n' + output;
 
   const errors = [];
-  for (const s of traceCandidates) {
-    const m = s.match(/file (?<quote>"?)(?<file>.*)\k<quote>/);
-    if (!m || !m.groups) continue;
 
-    const { file } = m.groups;
-    const linenos = [...s.matchAll(/L(?<lineno>[0-9]+):(?<line>.*)/g)].map(
-      (m) => {
-        const l = m?.groups?.lineno;
-        if (!l) return -1;
-        return parseInt(l, 10);
-      }
-    );
-    const message =
-      s.match(/(?<msg>\S[\s\S]*?)\nfile /)?.groups?.msg || "no message";
-
-    const fullMessage = s;
-
+  for (const m of s.matchAll(dataNodeError)) {
     errors.push({
-      file: fileResolver ? fileResolver(file) : file,
-      linenos,
-      message,
-      fullMessage
+      file: r(m.groups!.file!),
+      lineno: parseInt(m.groups!.lineno!, 10), // the last lineno captured
+      message: m.groups?.msg!,
+      fullMessage: m[0],
+      pat: 'dataNodeError'
     });
   }
+
+  for (const m of s.matchAll(shipEntityError)) {
+    errors.push({
+      entity: r(m.groups!.entity!),
+      file: undefined,
+      lineno: undefined,
+      message: m.groups!.msg,
+      fullMessage: m[0],
+      pat: 'shipEntityError'
+    });
+  }
+
+  for (const m of s.matchAll(shipMissingEquippedOutfit)) {
+    errors.push({
+      entity: r(m.groups!.entity!),
+      file: undefined,
+      lineno: undefined,
+      message: m.groups!.msg,
+      fullMessage: m[0],
+      pat: 'shipMissingOutfitEquipped'
+    });
+  }
+
   return errors;
 };
