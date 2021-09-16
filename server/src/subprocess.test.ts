@@ -2,6 +2,7 @@ import * as assert from "assert";
 import {
     dataNodeError,
     getExecutable,
+    parseCoreDataWithSubprocess,
     parseErrors,
     parsePluginWithSubprocess,
     shipEntityError,
@@ -13,20 +14,32 @@ import { readdirSync, existsSync, mkdirSync, rmdirSync, mkdtempSync } from "fs";
 import * as fs from "fs";
 import * as path from "path";
 import * as os from "os";
+import { getPluginDir, getResourcesDir, isCoreDataFile } from "./plugin";
 
 describe("Endless Sky and the filesystem", () => {
     let pluginDir = "";
     const filename = "ships.txt";
     const contents = `Ship Canoe\n\tdescription "small"`;
 
+    let coreDir = "";
+
     before(() => {
         pluginDir = fs.mkdtempSync(path.join(os.tmpdir(), "plugin-"));
         fs.mkdirSync(path.join(pluginDir, "data"));
         fs.writeFileSync(path.join(pluginDir, "data", filename), contents);
+
+        coreDir = fs.mkdtempSync(path.join(os.tmpdir(), "core-"));
+        fs.mkdirSync(path.join(coreDir, "data"))
+        fs.mkdirSync(path.join(coreDir, "sounds"))
+        fs.mkdirSync(path.join(coreDir, "images"))
+        fs.writeFileSync(path.join(coreDir, "data", filename), contents);
+        fs.writeFileSync(path.join(coreDir, "credits.txt"), "mostly MZ\n");
+        fs.writeFileSync(path.join(coreDir, "SConstruct"), "scons is to cmake as mercurial is to git\n");
     });
 
     after(() => {
         rmdirSync(pluginDir, { recursive: true });
+        rmdirSync(coreDir, { recursive: true });
     });
 
     it("can find an Endless Sky executable", () => {
@@ -59,8 +72,8 @@ describe("Endless Sky and the filesystem", () => {
     });
 
     describe("parseWithSubprocess", function () {
-        this.timeout(15000); // mac was exceeding 2000ms
-        it("should be able to read stderr warnings", async () => {
+        this.timeout(5000); // mac was exceeding 2000ms
+        it("should be able to read stderr warnings for a plugin", async () => {
             const output = await parsePluginWithSubprocess(pluginDir);
             assert.deepStrictEqual(output.map(o => {
                 const { fullMessage, ...rest } = o;
@@ -74,6 +87,28 @@ describe("Endless Sky and the filesystem", () => {
                 },
             ]);
         });
+
+        it("should be able to read stderr warnings for core files", async () => {
+            const output = await parseCoreDataWithSubprocess(coreDir);
+            assert.deepStrictEqual(output.map(o => {
+                const { fullMessage, ...rest } = o;
+                return rest;
+            }), [
+                {
+                    file: path.join(coreDir, "data", filename),
+                    lineno: 1,
+                    message: "Skipping unrecognized root object:",
+                    pat: "dataNodeError",
+                },
+            ]);
+        });
+
+        it("should identify core data files", () => {
+            assert.strictEqual(isCoreDataFile(path.join(pluginDir, "data", filename)), false);
+            assert.strictEqual(isCoreDataFile(path.join(coreDir, "data", filename)), true);
+            assert.strictEqual(getResourcesDir(path.join(coreDir, "data", filename)), coreDir);
+            assert.strictEqual(getPluginDir(path.join(pluginDir, "data", filename)), pluginDir);
+        })
     });
 });
 
