@@ -12,6 +12,7 @@ jobs:
       matrix:
         node-version: [14.x]
         os: [ubuntu-latest, windows-latest, macos-latest]
+        es-build: [continuous]
 
     runs-on: ${{ matrix.os }}
 
@@ -21,6 +22,30 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
+      - name: Download continuous es Windows
+        if: ${{ matrix.es-build == 'continuous' && matrix.os == 'windows-latest' }}
+        run: |
+          Invoke-WebRequest https://github.com/endless-sky/endless-sky/releases/download/continuous/EndlessSky-win64-continuous.zip -OutFile es.zip
+          Expand-Archive es.zip -DestinationPath . -Force
+          Remove-Item es.zip
+      - name: Download continuous es Mac
+        if: ${{ matrix.es-build == 'continuous' && matrix.os == 'macos-latest' }}
+        run: |
+          wget https://github.com/endless-sky/endless-sky/releases/download/continuous/EndlessSky-macOS10.15-continuous.zip
+          unzip EndlessSky-macOS10.15-continuous.zip
+          rm EndlessSky-macOS10.15-continuous.zip
+      - name: Download continuous es Linux
+        if: ${{ matrix.es-build == 'continuous' && matrix.os == 'ubuntu-latest' }}
+        run: |
+          wget https://github.com/endless-sky/endless-sky/releases/download/continuous/endless-sky-x86_64-continuous.tar.gz
+          mkdir es
+          tar xzf endless-sky-x86_64-continuous.tar.gz -C es
+      - name: debugging
+        shell: bash
+        run: |
+          ls
+          ls *
+          ls */*
       - name: Install dependencies
         run: npm ci
       - run: npm test
