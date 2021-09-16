@@ -243,9 +243,14 @@ export const parseErrors = (
 ): { file?: string; lineno?: number; message: string, fullMessage: string, pat: string }[] => {
   //console.log('full es stderr output:')
   //console.log(output);
-  const r = (path: string) => {
-    if (!fileResolver) return path;
-    return fileResolver(path);
+  const r = (p: string) => {
+
+    // Endless Sky swaps \ for / so need to swap back
+    if (path.sep === '\\') {
+      [p] = p.replace(/\//g, '\\');
+    }
+    if (!fileResolver) return p;
+    return fileResolver(p);
   }
   // Windows line endings!
   let s = output.replace(/\r\n/g, '\n');
