@@ -12,7 +12,7 @@
         "url": "https://github.com/thomasballinger/endless-sky-vscode"
     },
     "dependencies": {
-        "endless-sky-bindings": "0.1.11",
+        "endless-sky-bindings": "0.2.1",
         "vscode-languageserver": "^7.0.0",
         "vscode-languageserver-textdocument": "^1.0.1"
     }

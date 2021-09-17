@@ -247,7 +247,7 @@ export const parseErrors = (
 
     // Endless Sky swaps \ for / so need to swap back
     if (path.sep === '\\') {
-      [p] = p.replace(/\//g, '\\');
+      p = p.replace(/\//g, '\\');
     }
     if (!fileResolver) return p;
     return fileResolver(p);

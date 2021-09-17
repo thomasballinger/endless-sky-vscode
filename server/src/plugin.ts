@@ -18,9 +18,9 @@ export const isInDataDir = (filePath: string): boolean => {
 };
 
 const getDataDir = (filePath: string): string | undefined => {
+  // there must be a nicer way to do this
   const parts = path.resolve(filePath).split(path.sep);
-  parts[0] = '/' + parts[0]; // there must be a nicer way to do this
-  return path.join(...parts.slice(0, parts.lastIndexOf("data") + 1));
+  return parts.slice(0, parts.lastIndexOf("data") + 1).join(path.sep);
 };
 
 export const getPluginDir = (filePath: string): string | undefined => {
