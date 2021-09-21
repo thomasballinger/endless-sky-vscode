@@ -74,6 +74,9 @@ phrase
 month
 autosave
 galaxy
+spaceport
+security
+date
 
 # conversations
 choice
@@ -86,3 +89,9 @@ branch
 defer
 set
 
+unlink
+link
+unvisit
+visit
+tribute
+bribe
