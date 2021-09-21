@@ -53,11 +53,13 @@ near
 distance
 dialog
 conversation
+shipyard
 ship
 fleet
 log
 dialog
 conversation
+outfitter
 outfit
 require
 payment
@@ -71,6 +73,7 @@ random
 phrase
 month
 autosave
+galaxy
 
 # conversations
 choice
@@ -79,3 +82,7 @@ label
 accept
 variant
 fighers
+branch
+defer
+set
+

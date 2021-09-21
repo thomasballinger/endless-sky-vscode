@@ -64,7 +64,7 @@
 		"missionKeywords": {
 			"patterns": [{
 				"name": "keyword.control.endlesssky",
-				"match": "\\t((\"(scan cargo|scan outfits)\")|((?<optionalquote>\"?)(names|name|description|blocked|deadline|cargo|illegal|stealth|passengers|illegal|stealth|invisible|priority|minor|job|landing|assisting|boarding|repeat|clearance|infiltrating|waypoint|stopover|source|destination|planet|system|government|attributes|outfits|category|near|distance|npc|save|kill|board|assist|disable|evade|accompany|capture|provoke|government|personality|confusion|system|government|near|distance|dialog|conversation|ship|fleet|log|dialog|conversation|outfit|require|payment|fine|event|fail|word|random|phrase|month|autosave|choice|goto|label|accept|variant|fighers)\\k<optionalquote>))" 
+				"match": "\\t((\"(scan cargo|scan outfits)\")|((?<optionalquote>\"?)(names|name|description|blocked|deadline|cargo|illegal|stealth|passengers|illegal|stealth|invisible|priority|minor|job|landing|assisting|boarding|repeat|clearance|infiltrating|waypoint|stopover|source|destination|planet|system|government|attributes|outfits|category|near|distance|npc|save|kill|board|assist|disable|evade|accompany|capture|provoke|government|personality|confusion|system|government|near|distance|dialog|conversation|shipyard|ship|fleet|log|dialog|conversation|outfitter|outfit|require|payment|fine|event|fail|word|random|phrase|month|autosave|galaxy|choice|goto|label|accept|variant|fighers|branch|defer|set)\\k<optionalquote>))" 
 			}]
 		},
 		"topLevelKeywords": {
