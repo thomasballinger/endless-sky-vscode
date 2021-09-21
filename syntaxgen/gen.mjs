@@ -7,6 +7,7 @@ function patternFromFile(filename) {
   const keywords = fs
     .readFileSync(filename, "utf8")
     .split("\n")
+    .filter((x) => !x.startsWith("#"))
     .filter((x) => x); // empty string is falsy
 
   const name = path.basename(filename, ".txt");
@@ -30,7 +31,13 @@ function patternFromFile(filename) {
 }
 
 function language() {
-  const files = ["ship.txt", "attribute.txt", "outfit.txt", "weapon.txt"];
+  const files = [
+    "ship.txt",
+    "attribute.txt",
+    "outfit.txt",
+    "weapon.txt",
+    "mission.txt",
+  ];
   const __dirname = dirname(fileURLToPath(import.meta.url));
   const template = fs.readFileSync(
     __dirname + "/template.tmLanguage.json",

@@ -3,10 +3,10 @@
 	"name": "Endless Sky data",
 	"patterns": [
 		{
-			"include": "#keywords"
+			"include": "#topLevelKeywords"
 		},
 		{
-			"include": "#topLevelKeywords"
+			"include": "#keywords"
 		},
 		{
 			"include": "#shipKeywords"
@@ -21,6 +21,9 @@
 			"include": "#weaponKeywords"
 		},
 		{
+			"include": "#missionKeywords"
+		},
+		{
 			"include": "#doubleQuoteStrings"
 		},
 		{
@@ -28,6 +31,9 @@
 		},
 		{
 			"include": "#numbers"
+		},
+		{
+			"include": "#operators"
 		}
 	],
 	"repository": {
@@ -55,17 +61,27 @@
 				"match": "\\t((\"(blast radius|burset reload|burst count|die effect|disruption damage|fire effect|firing energy|firing force|firing fuel|firing heat|hardpoint offset|hardpoint sprite|heat damage|hit effect|hit force|hull damage|ion damage|missile strength|radar tracking|random lifetime|shield damage|turrent mounts|turret turn)\")|((?<optionalquote>\"?)(acceleration|ammo|anti-missile|homing|icon|inaccuracy|lifetime|reload|sound|sprite|submunition|velocity)\\k<optionalquote>))" 
 			}]
 		},
-		"topLevelKeywords": {
+		"missionKeywords": {
 			"patterns": [{
 				"name": "keyword.control.endlesssky",
-				"match": "^(color|conversation|effect|event|fleet|galaxy|government|hazard|interface|minable|mission|outfit|outfitter|person|phrase|planet|ship|shipyard|start|system|test|test-data|trade|landing message|star|news|rating|category|tip)\\b"
+				"match": "\\t((\"(scan cargo|scan outfits)\")|((?<optionalquote>\"?)(names|name|description|blocked|deadline|cargo|illegal|stealth|passengers|illegal|stealth|invisible|priority|minor|job|landing|assisting|boarding|repeat|clearance|infiltrating|waypoint|stopover|source|destination|planet|system|government|attributes|outfits|category|near|distance|npc|save|kill|board|assist|disable|evade|accompany|capture|provoke|government|personality|confusion|system|government|near|distance|dialog|conversation|ship|fleet|log|dialog|conversation|outfit|require|payment|fine|event|fail|word|random|phrase|month|autosave|choice|goto|label|accept|variant|fighers)\\k<optionalquote>))" 
 			}]
 		},
+		"topLevelKeywords": {
+			"patterns": [
+				{
+					"name": "keyword.control.endlesssky",
+					"match": "^(color|conversation|effect|event|fleet|galaxy|government|hazard|interface|minable|mission|outfit|outfitter|person|phrase|planet|ship|shipyard|start|system|test|test-data|trade|landing message|star|news|rating|category|tip)\\b"
+				}
+			]
+		},
 		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.endlesssky",
-				"match": "\\b(add|and|or|add attributes)\\b"
-			}]
+			"patterns": [
+				{
+					"name": "keyword.control.endlesssky",
+					"match": "\\b(add|and|or|add attributes|to offer|to complete|to fail|never|has|not|neighbor|to spawn|to despawn|on offer|on complete|on accept|on decline|on defer|on fail|on abort|on visit|on stopover|on waypoint|on enter|dialog phrase|give ship|set condition|clear condition|random|phrase|next|evade|staying|heroic)\\b"
+				}
+			]
 		},
 		"doubleQuoteStrings": {
 			"name": "string.quoted.double.endlesssky",
@@ -76,10 +92,18 @@
 					"name": "constant.character.escape.endlesssky",
 					"match": "(<)(.*?)(>)",
 					"captures": {
-						"0": {"name": "meta.bold.example"},
-						"1": {"name": "punctuation.definition.bold.example"},
-						"2": {"name": "markup.bold.example"},
-						"3": {"name": "punctuation.definition.bold.example"}
+						"0": {
+							"name": "meta.bold.example"
+						},
+						"1": {
+							"name": "punctuation.definition.bold.example"
+						},
+						"2": {
+							"name": "markup.bold.example"
+						},
+						"3": {
+							"name": "punctuation.definition.bold.example"
+						}
 					}
 				},
 				{
@@ -97,10 +121,18 @@
 					"name": "constant.character.escape.endlesssky",
 					"match": "(<)(.*?)(>)",
 					"captures": {
-						"0": {"name": "meta.bold.example"},
-						"1": {"name": "punctuation.definition.bold.example"},
-						"2": {"name": "markup.bold.example"},
-						"3": {"name": "punctuation.definition.bold.example"}
+						"0": {
+							"name": "meta.bold.example"
+						},
+						"1": {
+							"name": "punctuation.definition.bold.example"
+						},
+						"2": {
+							"name": "markup.bold.example"
+						},
+						"3": {
+							"name": "punctuation.definition.bold.example"
+						}
 					}
 				},
 				{
@@ -112,6 +144,10 @@
 		"numbers": {
 			"name": "constant.numeric",
 			"match": "[-]?(([0-9]*[.][0-9]+)|([0-9]+))"
+		},
+		"operators": {
+			"name": "keyword.operator",
+			"match": "([=]|[+][=]|[-][=]|[+][+]|[-][-]|[<]|[>])"
 		}
 	},
 	"scopeName": "source.endlesssky"
