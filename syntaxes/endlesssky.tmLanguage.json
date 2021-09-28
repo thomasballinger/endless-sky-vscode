@@ -44,7 +44,7 @@
 		},
 		"comments": {
 			"name": "comment.line.number-sign",
-			"match": "(?<=^\\s*)#.*"
+			"match": "#.*"
 		},
 		"requireLabel": {
 			"match": "(?<=\t)(goto|label|branch) (\".+?\"|\\S+)",
