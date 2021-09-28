@@ -3,7 +3,7 @@ import path, { dirname } from "path";
 import process from "process";
 import { fileURLToPath } from "url";
 
-function patternFromFile(filename) {
+function indentedPatternFromFile(filename) {
   const keywords = fs
     .readFileSync(filename, "utf8")
     .split("\n")
@@ -15,14 +15,14 @@ function patternFromFile(filename) {
   const multiWord = keywords.filter((w) => w.includes(" "));
   const singleWord = keywords.filter((w) => !w.includes(" "));
 
-  const pat = `"\\\\t((\\"(${multiWord.join(
+  const pat = `"(?<=\\\\t| )((\\"(${multiWord.join(
     "|"
   )})\\")|((?<optionalquote>\\"?)(${singleWord.join(
     "|"
-  )})\\\\k<optionalquote>))"`;
+  )})\\\\b\\\\k<optionalquote>))"`;
 
   return `
-		"${name}Keywords": {
+		"${name}Generated": {
 			"patterns": [{
 				"name": "keyword.control.endlesssky",
 				"match": ${pat} 
@@ -31,13 +31,7 @@ function patternFromFile(filename) {
 }
 
 function language() {
-  const files = [
-    "ship.txt",
-    "attribute.txt",
-    "outfit.txt",
-    "weapon.txt",
-    "mission.txt",
-  ];
+  const files = ["keywords.txt"];
   const __dirname = dirname(fileURLToPath(import.meta.url));
   const template = fs.readFileSync(
     __dirname + "/template.tmLanguage.json",
@@ -50,7 +44,7 @@ function language() {
     throw new Error("bad repository header or template");
   }
   const insert = files
-    .map((f) => patternFromFile(__dirname + "/" + f))
+    .map((f) => indentedPatternFromFile(__dirname + "/" + f))
     .join("");
   const output =
     template.slice(0, insertionPoint) + insert + template.slice(insertionPoint);

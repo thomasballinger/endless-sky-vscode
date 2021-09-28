@@ -3,25 +3,16 @@
 	"name": "Endless Sky data",
 	"patterns": [
 		{
+			"include": "#comments"
+		},
+		{
 			"include": "#topLevelKeywords"
 		},
 		{
-			"include": "#keywords"
+			"include": "#requireLabel"
 		},
 		{
-			"include": "#shipKeywords"
-		},
-		{
-			"include": "#attributeKeywords"
-		},
-		{
-			"include": "#outfitKeywords"
-		},
-		{
-			"include": "#weaponKeywords"
-		},
-		{
-			"include": "#missionKeywords"
+			"include": "#keywordsGenerated"
 		},
 		{
 			"include": "#doubleQuoteStrings"
@@ -45,13 +36,20 @@
 				}
 			]
 		},
-		"keywords": {
-			"patterns": [
-				{
-					"name": "keyword.control.endlesssky",
-					"match": "\\b(add|and|or|add attributes|to offer|to complete|to fail|never|has|not|neighbor|to spawn|to despawn|on offer|on complete|on accept|on decline|on defer|on fail|on abort|on visit|on stopover|on waypoint|on enter|dialog phrase|give ship|set condition|clear condition|random|phrase|next|evade|staying|heroic)\\b"
+		"comments": {
+			"name": "comment.line.number-sign",
+			"match": "(?<=^\\s*)#.*"
+		},
+		"requireLabel": {
+			"match": "(?<=\t)(goto|label|branch) (\".+?\"|\\S+)",
+			"captures": {
+				"1": {
+					"name": "keyword.control.endlesssky"
+				},
+				"2": {
+					"name": "variable"
 				}
-			]
+			}
 		},
 		"doubleQuoteStrings": {
 			"name": "string.quoted.double.endlesssky",

@@ -1,0 +1,288 @@
+abort
+acceleration
+accept
+accompany
+active cooling
+add
+afterburner fuel
+afterburner heat
+afterburner thrust
+ammo
+and
+angle
+anti-missile
+appeasing
+apply
+assist
+assisting
+asteroid scan power
+atmosphere scan
+attributes
+automaton
+autosave
+back
+bay
+blast radius
+blocked
+board
+boarding
+branch
+bribe
+bunks
+burst count
+burst reload
+capture
+capture attack
+capture defense
+cargo
+cargo scan power
+cargo scan speed
+cargo space
+category
+choice
+clear
+clearance
+cloak
+cloaking energy
+cloaking fuel
+commodities
+complete
+confusion
+conversation
+cooling
+cooling energy
+cooling inefficiency
+core crystal
+cost
+coward
+crystal projector
+date
+day
+deadline
+decline
+defer
+depleted shield delay
+description
+despawn
+destination
+dialog
+die
+die effect
+disable
+disables
+disruption damage
+distance
+drag
+energy capacity
+energy consumption
+energy generation
+engine
+engine capacity
+enter
+entering
+escort
+evade
+event
+explode
+fail
+fighers
+fighters
+final explode
+fine
+fire effect
+firing energy
+firing force
+firing fuel
+firing heat
+firing hull
+flare sound
+flare sprite
+fleeing uninterested
+fleet
+forbearing
+frame rate
+fuel capacity
+galaxy
+give
+goto
+government
+gun
+gun ports
+hardpoint offset
+hardpoint sprite
+harvests
+has
+heat damage
+heat dissipation
+heat generation
+heroic
+hit effect
+hit force
+homing
+hull
+hull damage
+hull energy
+hull heat
+hull repair
+hull repair rate
+hyperdrive
+icon
+illegal
+inaccuracy
+infiltrating
+infrared tracking
+invisible
+ion damage
+job
+jump drive
+jump fuel
+jump speed
+kill
+label
+landing
+launch
+leak
+left
+licenses
+lifetime
+link
+live effect
+load
+location
+log
+map
+mass
+message
+mining
+minor
+missile strength
+month
+mute
+name
+names
+near
+neighbor
+nemesis
+never
+never disabled
+next
+no repeat
+not
+noun
+npc
+offer
+on
+opportunistic
+optical tracking
+or
+outfit
+outfit scan power
+outfit scan speed
+outfit space
+outfits
+outfitter
+outfitters
+over
+passengers
+payment
+personality
+phasing
+phrase
+piercing
+planet
+plunders
+plural
+priority
+provoke
+quantum keystone
+radar jamming
+radar tracking
+ramscoop
+random
+random angle
+random frame rate
+random lifetime
+random spin
+random velocity
+range override
+reload
+remove
+repeat
+replace
+require
+required crew
+reverse engine
+reverse flare sound
+reverse flare sprite
+reverse thrust
+reverse thrusting energy
+reverse thrusting heat
+right
+safe
+save
+scan cargo
+scan interference
+scan outfits
+scene
+scram drive
+security
+set
+shield damage
+shield energy
+shield generation
+shield heat
+shields
+ship
+shipyard
+shooting star
+show
+solar collection
+sound
+source
+spaceport
+spawn
+spinal mount
+sprite
+staying
+stealth
+steering flare sound
+steering flare sprite
+stopover
+stream
+submunition
+surveillance
+swizzle
+system
+tactical scan power
+threshold percentage
+thrust
+thrusting energy
+thrusting heat
+thumbnail
+timid
+to
+tracker capacity
+tribute
+trigger radius
+turn
+turning energy
+turning heat
+turret
+turret mounts
+turret turn
+uncapturable
+unconstrained
+unlink
+unplunderable
+unvisit
+variant
+velocity
+velocity scale
+vindictive
+visit
+waiting
+waypoint
+weapon
+weapon capacity
+word
+zoom
