@@ -1,0 +1,36 @@
+{
+    "Object": {
+        "prefix": "object", 
+        "body": [
+            "object $1",
+                "\tsprite $2",
+                "\tdistance $#",
+                "\tperiod$0"]
+    },
+
+    "planet": {
+        "prefix": "planet", 
+        "description": "Planet",
+        "body": [
+            "planet \"$1\"",
+            "\tlandscape $2",
+            "\tgovernment $3",
+            "\tdescription `$4`",
+            "\tspaceport `$0`"
+        ]
+    },
+
+    "fleet": {
+        "prefix": "fleet",
+        "description": "Create a fleet in Endless Sky",
+        "body": [
+            "fleet $1",
+            "\tgovernment",
+            "\tnames \"$2\"",
+            "\tpersonality",
+            "\t\t$3",
+            "\tvariant 1",
+            "\t\t\"$0\""
+        ]
+    }
+}

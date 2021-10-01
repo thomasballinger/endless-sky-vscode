@@ -11,6 +11,7 @@
 !server/out/server.js
 !server/out/server.js.map
 !syntaxes/endlesssky.tmLanguage.json
+!snippets.json
 !language-configuration.json
 !icon.png
 !README.md
