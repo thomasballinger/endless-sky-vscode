@@ -16,12 +16,14 @@ apply
 assist
 assisting
 asteroid scan power
+asteroids
 atmosphere scan
 attributes
 automaton
 autosave
 back
 bay
+belt
 blast radius
 blocked
 board
@@ -108,10 +110,12 @@ goto
 government
 gun
 gun ports
+habitable
 hardpoint offset
 hardpoint sprite
 harvests
 has
+haze
 heat damage
 heat dissipation
 heat generation
@@ -140,6 +144,7 @@ jump speed
 kill
 label
 landing
+landscape
 launch
 leak
 left
@@ -153,6 +158,7 @@ log
 map
 mass
 message
+minables
 mining
 minor
 missile strength
@@ -170,6 +176,7 @@ no repeat
 not
 noun
 npc
+object
 offer
 on
 opportunistic
@@ -185,6 +192,7 @@ outfitters
 over
 passengers
 payment
+period
 personality
 phasing
 phrase
@@ -192,6 +200,7 @@ piercing
 planet
 plunders
 plural
+pos
 priority
 provoke
 quantum keystone
@@ -230,6 +239,7 @@ set
 shield damage
 shield energy
 shield generation
+shield generation multiplier
 shield heat
 shields
 ship
@@ -262,6 +272,7 @@ thumbnail
 timid
 to
 tracker capacity
+trade
 tribute
 trigger radius
 turn
