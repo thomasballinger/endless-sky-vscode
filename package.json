@@ -14,7 +14,7 @@
         "Programming Languages"
     ],
     "scripts": {
-        "vscode:prepublish": "npm run syntaxgen && npm run esbuild-client-base -- --minify && npm run esbuild-server-base -- --minify",
+        "vscode:prepublish": "npm run syntaxgen && npm run esbuild-client-base -- && npm run esbuild-server-base --",
         "esbuild-client-base": "esbuild ./client/src/extension.ts --bundle --outfile=client/out/extension.js --external:vscode --format=cjs --platform=node",
         "esbuild-server-base": "esbuild ./server/src/server.ts --bundle --outfile=server/out/server.js --external:server --format=cjs --platform=node",
         "esbuild-client": "npm run esbuild-client-base -- --sourcemap",
