@@ -2,12 +2,15 @@ abort
 acceleration
 accept
 accompany
+account
 active cooling
 add
 afterburner fuel
 afterburner heat
 afterburner thrust
+align
 ammo
+anchor
 and
 angle
 anti-missile
@@ -22,17 +25,20 @@ attributes
 automaton
 autosave
 back
+bar
 bay
 belt
 blast radius
 blocked
 board
 boarding
+box
 branch
 bribe
 bunks
 burst count
 burst reload
+button
 capture
 capture attack
 capture defense
@@ -41,12 +47,14 @@ cargo scan power
 cargo scan speed
 cargo space
 category
+center
 choice
 clear
 clearance
 cloak
 cloaking energy
 cloaking fuel
+color
 commodities
 complete
 confusion
@@ -57,6 +65,7 @@ cooling inefficiency
 core crystal
 cost
 coward
+credits
 crystal projector
 date
 day
@@ -70,6 +79,7 @@ destination
 dialog
 die
 die effect
+dimensions
 disable
 disables
 disruption damage
@@ -97,12 +107,15 @@ firing force
 firing fuel
 firing heat
 firing hull
+flame
 flare sound
 flare sprite
 fleeing uninterested
 fleet
 forbearing
 frame rate
+frequency
+from
 fuel capacity
 galaxy
 give
@@ -131,10 +144,13 @@ hull repair
 hull repair rate
 hyperdrive
 icon
+if
 illegal
+image
 inaccuracy
 infiltrating
 infrared tracking
+interest
 invisible
 ion damage
 job
@@ -158,11 +174,13 @@ log
 map
 mass
 message
+middle
 minables
 mining
 minor
 missile strength
 month
+mortgage
 mute
 name
 names
@@ -189,7 +207,9 @@ outfit space
 outfits
 outfitter
 outfitters
+outline
 over
+parallel
 passengers
 payment
 period
@@ -201,6 +221,8 @@ planet
 plunders
 plural
 pos
+power
+principle
 priority
 provoke
 quantum keystone
@@ -227,12 +249,14 @@ reverse thrust
 reverse thrusting energy
 reverse thrusting heat
 right
+ring
 safe
 save
 scan cargo
 scan interference
 scan outfits
 scene
+score
 scram drive
 security
 set
@@ -259,11 +283,13 @@ steering flare sound
 steering flare sprite
 stopover
 stream
+string
 submunition
 surveillance
 swizzle
 system
 tactical scan power
+term
 threshold percentage
 thrust
 thrusting energy
@@ -275,6 +301,7 @@ tracker capacity
 trade
 tribute
 trigger radius
+truncate
 turn
 turning energy
 turning heat
@@ -283,17 +310,22 @@ turret mounts
 turret turn
 uncapturable
 unconstrained
+under
 unlink
 unplunderable
 unvisit
+value
 variant
 velocity
 velocity scale
 vindictive
+visible
 visit
 waiting
 waypoint
 weapon
 weapon capacity
+width
+wind
 word
 zoom
