@@ -32,7 +32,7 @@
 			"patterns": [
 				{
 					"name": "keyword.control.endlesssky",
-					"match": "^(color|conversation|effect|event|fleet|galaxy|government|hazard|interface|minable|mission|outfit|outfitter|person|phrase|planet|ship|shipyard|start|system|test|test-data|trade|landing message|star|news|rating|category|tip)\\b"
+					"match": "^(color|conversation|effect|event|fleet|galaxy|government|hazard|interface|minable|mission|outfit|outfitter|person|phrase|planet|ship|shipyard|start|system|test-data|test|trade|landing message|star|news|rating|category|tip)\\b"
 				}
 			]
 		},

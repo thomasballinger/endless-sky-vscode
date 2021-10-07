@@ -3,8 +3,11 @@ acceleration
 accept
 accompany
 account
+active
 active cooling
 add
+afterburner effect
+afterburner energy
 afterburner fuel
 afterburner heat
 afterburner thrust
@@ -16,11 +19,15 @@ angle
 anti-missile
 appeasing
 apply
+arrival
+assert
 assist
 assisting
 asteroid scan power
 asteroids
 atmosphere scan
+atrocity
+attitude toward
 attributes
 automaton
 autosave
@@ -35,10 +42,12 @@ boarding
 box
 branch
 bribe
+bribe
 bunks
 burst count
 burst reload
 button
+call
 capture
 capture attack
 capture defense
@@ -55,9 +64,13 @@ cloak
 cloaking energy
 cloaking fuel
 color
+colored
+command
 commodities
+commodity
 complete
 confusion
+contents
 conversation
 cooling
 cooling energy
@@ -66,6 +79,9 @@ core crystal
 cost
 coward
 credits
+crew
+crew attack
+crew defense
 crystal projector
 date
 day
@@ -76,12 +92,14 @@ depleted shield delay
 description
 despawn
 destination
+destroy
 dialog
 die
 die effect
 dimensions
 disable
 disables
+display name
 disruption damage
 distance
 drag
@@ -101,6 +119,7 @@ fighers
 fighters
 final explode
 fine
+fine
 fire effect
 firing energy
 firing force
@@ -112,12 +131,18 @@ flare sound
 flare sprite
 fleeing uninterested
 fleet
+flotsam sprite
 forbearing
+force protection
 frame rate
 frequency
+friendly disabled hail
+friendly hail
 from
+fuel
 fuel capacity
 galaxy
+gaslining
 give
 goto
 government
@@ -128,14 +153,20 @@ hardpoint offset
 hardpoint sprite
 harvests
 has
+hazard
 haze
 heat damage
 heat dissipation
 heat generation
+heat protection
+help
 heroic
 hit effect
 hit force
 homing
+hostile disabled hail
+hostile hail
+hover
 hull
 hull damage
 hull energy
@@ -150,17 +181,24 @@ image
 inaccuracy
 infiltrating
 infrared tracking
+inject
+input
+installable
 interest
 invisible
 ion damage
+ion resistance
 job
+jump
 jump drive
 jump fuel
 jump speed
+key
 kill
 label
 landing
 landscape
+language
 launch
 leak
 left
@@ -181,9 +219,11 @@ minor
 missile strength
 month
 mortgage
+music
 mute
 name
 names
+navigate
 near
 neighbor
 nemesis
@@ -196,6 +236,7 @@ noun
 npc
 object
 offer
+offset
 on
 opportunistic
 optical tracking
@@ -209,25 +250,32 @@ outfitter
 outfitters
 outline
 over
+pad
 parallel
 passengers
+payload
 payment
+penalty for
 period
 personality
 phasing
 phrase
 piercing
+pilot
 planet
+player reputation
 plunders
 plural
+point
 pos
 power
-principle
+principal
 priority
 provoke
 quantum keystone
 radar jamming
 radar tracking
+raid
 ramscoop
 random
 random angle
@@ -237,11 +285,14 @@ random spin
 random velocity
 range override
 reload
+remnant node
 remove
 repeat
 replace
+reputation with
 require
 required crew
+required reputation
 reverse engine
 reverse flare sound
 reverse flare sprite
@@ -259,6 +310,7 @@ scene
 score
 scram drive
 security
+sequence
 set
 shield damage
 shield energy
@@ -270,6 +322,8 @@ ship
 shipyard
 shooting star
 show
+size
+slowing resistance
 solar collection
 sound
 source
@@ -277,8 +331,11 @@ spaceport
 spawn
 spinal mount
 sprite
+status active
+status partial
 staying
 stealth
+steering engine
 steering flare sound
 steering flare sprite
 stopover
@@ -290,6 +347,8 @@ swizzle
 system
 tactical scan power
 term
+test-data
+threshold
 threshold percentage
 thrust
 thrusting energy
@@ -299,6 +358,7 @@ timid
 to
 tracker capacity
 trade
+travel
 tribute
 trigger radius
 truncate
@@ -321,11 +381,15 @@ velocity scale
 vindictive
 visible
 visit
+visited
+visited planet
 waiting
+watchdog
 waypoint
 weapon
 weapon capacity
 width
 wind
 word
+year
 zoom
