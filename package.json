@@ -6,7 +6,7 @@
     "icon": "icon.png",
     "description": "Endless Sky data file support",
     "repository": "https://github.com/thomasballinger/endless-sky-vscode",
-    "version": "0.3.3",
+    "version": "0.3.4",
     "engines": {
         "vscode": "^1.60.0"
     },
