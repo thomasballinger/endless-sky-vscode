@@ -4,7 +4,7 @@ Notice your spelling mistakes sooner!
 
 This extension interprets every .txt file as Endless Sky data. You can change the filetype of a document back to 'plaintext' to temporarily disable this, or disable the plugin to prevent it on all files. Maybe someday there will be a way to change language based on file contents or location, but for now there seems to be no way to do this in VSCode.
 
-When creating Endless Sky plugins, [the GitHub wiki](https://github.com/endless-sky/endless-sky/wiki/CreatingPlugins) for instructions. Some of this information in available in-editor with this extension, but the wiki will always be the authoritative source. Some keywords may be missing from syntax highlighting in this plugin, but the error messages are directly from an Endless Sky executable.
+When creating Endless Sky plugins, see [the GitHub wiki](https://github.com/endless-sky/endless-sky/wiki/CreatingPlugins) for instructions. Some of this information in available in-editor with this extension, but the wiki will always be the authoritative source. Some keywords may be missing from syntax highlighting in this plugin, but the error messages are directly from an Endless Sky executable.
 
 ## Features
 
