@@ -252,6 +252,7 @@ outline
 over
 pad
 parallel
+partial
 passengers
 payload
 payment
@@ -331,8 +332,7 @@ spaceport
 spawn
 spinal mount
 sprite
-status active
-status partial
+status
 staying
 stealth
 steering engine
