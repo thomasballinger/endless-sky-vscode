@@ -24,8 +24,8 @@ export function activate(context: ExtensionContext) {
   const logfile = path.join(homedir, 'es-lsp-log.txt');
   console.log('using logfile: ', logfile);
   const serverOptions: ServerOptions = {
-    run: { command: 'node', args: [serverPath, '--log', '/Users/tomb/log.txt'], transport: TransportKind.stdio },
-    debug: { command: 'node', args: [serverPath, '--log', '/Users/tomb/log.txt'], transport: TransportKind.stdio },
+    run: { command: 'node', args: [serverPath, '--log', logfile], transport: TransportKind.stdio },
+    debug: { command: 'node', args: [serverPath, '--log', logfile], transport: TransportKind.stdio },
   };
 
   // Options to control the language client
