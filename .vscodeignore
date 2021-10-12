@@ -10,6 +10,9 @@
 !client/out/extension.js.map
 !server/out/server.js
 !server/out/server.js.map
+!es-lsp.js
+!es-lsp.wasm
+!es-lsp.wasm.map
 !syntaxes/endlesssky.tmLanguage.json
 !snippets.json
 !language-configuration.json

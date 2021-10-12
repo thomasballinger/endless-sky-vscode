@@ -6,3 +6,6 @@ server/out
 client/server
 .vscode-test
 .DS_Store
+es-lsp.js
+es-lsp.wasm
+es-lsp.wasm.map

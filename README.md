@@ -26,3 +26,10 @@ If you want to improve anything, especially the snippets or syntax highlighting,
 Syntax highlighting of keywords is based on the text files in the syntaxgen folder. If a word isn't being highlighted, it should be added to keywords.txt.
 
 Some features are provided by an [LSP](https://microsoft.github.io/language-server-protocol/) which will soon use the [JavaScript Endless Sky bindings](https://github.com/thomasballinger/endless-sky-bindings). Contributions to these bindings are helpful too.
+
+## How to build for development
+* install meson and ninja
+* install emscripten via emsdk
+* `source emsdk/emsdk_env.sh`
+* `npm install`
+* `npm run vscode:prepublish`
