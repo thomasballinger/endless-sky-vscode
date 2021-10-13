@@ -28,8 +28,17 @@ Syntax highlighting of keywords is based on the text files in the syntaxgen fold
 Some features are provided by an [LSP](https://microsoft.github.io/language-server-protocol/) which will soon use the [JavaScript Endless Sky bindings](https://github.com/thomasballinger/endless-sky-bindings). Contributions to these bindings are helpful too.
 
 ## How to build for development
+Are you just changing the default syntax file, snippets, or other VSCode configuration? Then just clone the repo and make the changes, not much setup required.
+
+Are you making changes to the language server?
 * install meson and ninja
-* install emscripten via emsdk
-* `source emsdk/emsdk_env.sh`
+* install the emscripten with [emsdk](https://emscripten.org/docs/getting_started/downloads.html)
+* `~/emsdk/emsdk install tot`  # tot is "tip of tree" which we need for
+* `~/emsdk/emsdk activate tot` # a fix that isn't in a released version yet
+* `git clone --recursive`  # because we need quyykk's language server
+* `source ~/emsdk/emsdk_env.sh`
+* cd endless-sky-vscode`
 * `npm install`
 * `npm run vscode:prepublish`
+* `code .`
+* click "debug"
