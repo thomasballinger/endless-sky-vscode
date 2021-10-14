@@ -1,4 +1,6 @@
 import * as path from "path";
+import * as fs from "fs";
+import * as os from "os";
 import { workspace, ExtensionContext } from "vscode";
 
 import {
@@ -12,22 +14,18 @@ let client: LanguageClient;
 
 export function activate(context: ExtensionContext) {
   // The server is implemented in node
-  const serverModule = context.asAbsolutePath(
-    path.join("server", "out", "main.js")
+  const serverPath = context.asAbsolutePath(
+    //path.join("server", "out", "main.js") // the old JS server, still in the repo
+    path.join("es-lsp.js") // emscripten-compiled quyykk's LSP server
   );
-  // The debug options for the server
-  // --inspect=6009: runs the server in Node's Inspector mode so VS Code can attach to the server for debugging
-  const debugOptions = { execArgv: ["--nolazy", "--inspect=6009"] };
 
-  // If the extension is launched in debug mode then the debug server options are used
-  // Otherwise the run options are used
+  console.error('serverPath:', serverPath);
+  const homedir = os.homedir();
+  const logfile = path.join(homedir, 'es-lsp-log.txt');
+  console.error('using logfile: ', logfile);
   const serverOptions: ServerOptions = {
-    run: { module: serverModule, transport: TransportKind.ipc },
-    debug: {
-      module: serverModule,
-      transport: TransportKind.ipc,
-      options: debugOptions,
-    },
+    run: { command: 'node', args: [serverPath, '--log', logfile], transport: TransportKind.stdio },
+    debug: { command: 'node', args: [serverPath, '--log', logfile], transport: TransportKind.stdio },
   };
 
   // Options to control the language client

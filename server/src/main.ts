@@ -1,5 +1,6 @@
 import * as process from "process";
 
+import * as languageserver from "vscode-languageserver";
 import { getPluginDir, getResourcesDir, isCoreDataFile } from "./plugin";
 import { runServer } from "./server";
 import {
@@ -13,17 +14,17 @@ const main = async () => {
 
     const isCore = isCoreDataFile(path);
     if (isCore) {
-      console.log("parsing data files as though they are core files");
+      console.error("parsing data files as though they are core files");
     } else {
-      console.log("parsing data files as though they are a plugin");
+      console.error("parsing data files as though they are a plugin");
     }
     if (isCore) {
-      return JSON.stringify(
+      process.stdout.write(JSON.stringify(
         await parseCoreDataWithSubprocess(getResourcesDir(path)!)
-      );
+      ));
     } else {
       const pluginDir = getPluginDir(path)!;
-      return JSON.stringify(await parsePluginWithSubprocess(pluginDir));
+      process.stdout.write(JSON.stringify(await parsePluginWithSubprocess(pluginDir)));
     }
   } else {
     runServer();

@@ -1,0 +1,24 @@
+[binaries]
+c = 'emcc'
+cpp = 'em++'
+ar = 'emar'
+exe_wrapper = 'node'
+
+[properties]
+shared_lib_suffix = 'js'
+static_lib_suffix = 'js'
+shared_module_suffix = 'js'
+exe_suffix = 'js'
+
+[built-in options]
+c_args = []
+c_link_args = []
+cpp_args = ['-gsource-map']
+cpp_link_args = ['-s', 'NODERAWFS=1', '-s', 'ALLOW_MEMORY_GROWTH=1', '-gsource-map', '-s', 'SAFE_HEAP=1', '-s', 'STACK_OVERFLOW_CHECK=1']
+# Careful, turning on assertions makes things breaks when memory resizes (we're guessing it a writes to stdout)
+
+[host_machine]
+system = 'emscripten'
+cpu_family = 'x86'
+cpu = 'i686'
+endian = 'little'

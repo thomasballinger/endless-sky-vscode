@@ -1,0 +1,3 @@
+[submodule "es-lsp"]
+	path = es-lsp
+	url = git@github.com:quyykk/es-lsp.git

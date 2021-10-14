@@ -14,7 +14,7 @@
         "Programming Languages"
     ],
     "scripts": {
-        "vscode:prepublish": "npm run syntaxgen && npm run esbuild-client-base -- && npm run esbuild-server-base --",
+        "vscode:prepublish": "npm run syntaxgen && npm run es-lsp && npm run esbuild-client-base -- && npm run esbuild-server-base --",
         "esbuild-client-base": "esbuild ./client/src/extension.ts --bundle --outfile=client/out/extension.js --external:vscode --format=cjs --platform=node",
         "esbuild-server-base": "esbuild ./server/src/main.ts --bundle --outfile=server/out/main.js --external:server --format=cjs --platform=node",
         "esbuild-client": "npm run esbuild-client-base -- --sourcemap",
@@ -23,6 +23,7 @@
         "esbuild-server-watch": "npm run esbuild-server-base -- --sourcemap --watch",
         "test-compile": "tsc -p ./",
         "syntaxgen": "node syntaxgen/gen.mjs > syntaxes/endlesssky.tmLanguage.json",
+        "es-lsp": "cd es-lsp; meson build --buildtype release --cross-file=../emscripten.txt; cd build; ninja -v; cp es-lsp.js es-lsp.wasm es-lsp.wasm.map ../../",
         "watch": "tsc -b -w",
         "lint": "eslint ./client/src ./server/src --ext .ts,.tsx",
         "postinstall": "cd client && npm install && cd ../server && npm install && cd ..",

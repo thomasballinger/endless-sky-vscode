@@ -59,8 +59,8 @@ export function getExecutable(preferencesExecutable?: string | undefined): strin
     if (existsSync(preferencesExecutable)) {
       return preferencesExecutable;
     } else {
-      console.log('bad executable from preferences!');
-      return undefined
+      console.error('bad executable from preferences!');
+      return undefined;
     }
   }
 
@@ -159,7 +159,7 @@ export const parseCoreDataWithSubprocess = async (
   resourceDir: string,
   executable?: string
 ) => {
-  console.log('resourceDir:', resourceDir);
+  console.error('resourceDir:', resourceDir);
   const output = await withPreparedFilesystem(
     { resources: resourceDir },
     async ({ config, resources }) => {
@@ -173,7 +173,7 @@ export const parseCoreDataWithSubprocess = async (
         );
         // TODO propagate this to the client
       }
-      console.log('resources:', resources);
+      console.error('resources:', resources);
       const { stderr } = await execFileP(executable, [
         "-s",
         "--config",
@@ -181,7 +181,7 @@ export const parseCoreDataWithSubprocess = async (
         "--resources",
         resources,
       ]);
-      console.log('stderr:', util.inspect(stderr))
+      console.error('stderr:', util.inspect(stderr));
       return stderr;
     }
   );
@@ -212,7 +212,7 @@ export const parsePluginWithSubprocess = async (
         "--resources",
         resources,
       ]);
-      //console.log('stderr from Endless Sky:', util.inspect(stderr));
+      //console.error('stderr from Endless Sky:', util.inspect(stderr));
       return stderr;
     }
   );
@@ -241,8 +241,8 @@ export const parseErrors = (
   output: string,
   fileResolver?: (path: string) => string
 ): { file?: string; lineno?: number; message: string, fullMessage: string, pat: string }[] => {
-  //console.log('full es stderr output:')
-  //console.log(output);
+  //console.error('full es stderr output:')
+  //console.error(output);
   const r = (p: string) => {
 
     // Endless Sky swaps \ for / so need to swap back
