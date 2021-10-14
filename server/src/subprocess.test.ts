@@ -89,7 +89,7 @@ describe("Endless Sky and the filesystem", () => {
         });
 
         it("should be able to read stderr warnings for core files", async () => {
-            console.log('coreDir:', coreDir);
+            console.error('coreDir:', coreDir);
             const output = await parseCoreDataWithSubprocess(coreDir);
             assert.deepStrictEqual(output.map(o => {
                 const { fullMessage, ...rest } = o;

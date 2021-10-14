@@ -19,10 +19,10 @@ export function activate(context: ExtensionContext) {
     path.join("es-lsp.js") // emscripten-compiled quyykk's LSP server
   );
 
-  console.log('serverPath:', serverPath);
+  console.error('serverPath:', serverPath);
   const homedir = os.homedir();
   const logfile = path.join(homedir, 'es-lsp-log.txt');
-  console.log('using logfile: ', logfile);
+  console.error('using logfile: ', logfile);
   const serverOptions: ServerOptions = {
     run: { command: 'node', args: [serverPath, '--log', logfile], transport: TransportKind.stdio },
     debug: { command: 'node', args: [serverPath, '--log', logfile], transport: TransportKind.stdio },

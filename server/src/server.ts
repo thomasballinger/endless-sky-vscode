@@ -95,12 +95,12 @@ export const runServer = () => {
       const { executablePath } = globalSettings;
       if (executablePath && !fs.existsSync(executablePath)) {
         // TODO show a dialog requesting a better default be set or something
-        console.log(
+        console.error(
           "executablePath + '" +
             executablePath +
             "' does not exist, please fix in settings"
         );
-        connection.console.log(
+        connection.console.error(
           "executablePath + '" +
             executablePath +
             "' does not exist, please fix in settings"
