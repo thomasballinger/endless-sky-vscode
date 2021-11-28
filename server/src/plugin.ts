@@ -31,6 +31,8 @@ export const getPluginDir = (filePath: string): string | undefined => {
   return path.dirname(dataDir);
 };
 
+/* Returns the --resources directory containing this file, or
+undefined if this is not in a resource directory */
 export const getResourcesDir = (filePath: string): string | undefined => {
   const dataDir = getDataDir(filePath);
   if (!dataDir) return undefined;

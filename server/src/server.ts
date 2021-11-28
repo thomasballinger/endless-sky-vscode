@@ -8,17 +8,21 @@ import {
   DidChangeConfigurationNotification,
   TextDocumentSyncKind,
   InitializeResult,
+  MessageType,
 } from "vscode-languageserver/node";
 
 import * as fs from "fs";
 import * as url from "url";
+import { resolve } from "path";
 
 import { TextDocument } from "vscode-languageserver-textdocument";
 import {
+  getExecutable,
   parseCoreDataWithSubprocess,
   parsePluginWithSubprocess,
 } from "./subprocess";
 import { getPluginDir, getResourcesDir, isCoreDataFile } from "./plugin";
+import { exec } from "child_process";
 
 export const runServer = () => {
   const connection = createConnection(ProposedFeatures.all);
@@ -28,6 +32,14 @@ export const runServer = () => {
 
   let hasConfigurationCapability = false;
   let hasDiagnosticRelatedInformationCapability = false;
+  let lastExecutablePath: string|undefined = undefined;
+
+  function sendErrorNot(message: string){
+    connection.sendNotification('window/showMessage', {
+      type: MessageType.Error,
+      message
+    })
+  }
 
   connection.onInitialize((params: InitializeParams) => {
     const capabilities = params.capabilities;
@@ -92,22 +104,22 @@ export const runServer = () => {
       globalSettings = <EndlessSkySettings>(
         (change.settings.endlesssky || defaultSettings)
       );
-      const { executablePath } = globalSettings;
-      if (executablePath && !fs.existsSync(executablePath)) {
-        // TODO show a dialog requesting a better default be set or something
-        console.log(
-          "executablePath + '" +
-            executablePath +
-            "' does not exist, please fix in settings"
-        );
-        connection.console.log(
-          "executablePath + '" +
-            executablePath +
-            "' does not exist, please fix in settings"
-        );
+    }
+    const {executablePath} = change.settings.endlesssky;
+
+    if (executablePath && executablePath !== lastExecutablePath) {
+      lastExecutablePath = executablePath;
+      const executableExists = !!getExecutable(sendErrorNot, executablePath);
+      if (executableExists) {
+        connection.sendNotification('window/showMessage', {
+          type: MessageType.Info,
+          message: "Endless Sky executable from preferences looks good: '" + executablePath + "'"
+        })
+      } else {
+        return;
       }
     }
-
+      
     // Revalidate all open text documents
     documents.all().forEach(validateFromDisk);
   });
@@ -154,23 +166,29 @@ export const runServer = () => {
     } else {
       console.log("parsing data files as though they are a plugin");
     }
+
+    const executable = getExecutable(sendErrorNot, settings.executablePath)
+    if (!executable) {
+      return
+    }
+
     const pluginDir = getPluginDir(path);
     const issues = [];
     if (isCore) {
       issues.push(
         ...(await parseCoreDataWithSubprocess(
           getResourcesDir(path)!,
-          settings.executablePath
+          executable
         ))
       );
     } else if (pluginDir) {
       issues.push(
-        ...(await parsePluginWithSubprocess(pluginDir, settings.executablePath))
+        ...(await parsePluginWithSubprocess(pluginDir, executable))
       );
     }
     console.log(`found ${issues.length} issues`);
     //console.log(path, issues);
-    const fileIssues = issues.filter((i) => i.file === path);
+    const fileIssues = issues.filter((i) => i.file && resolve(i.file) === path);
     //console.log(path, fileIssues);
     console.log(
       `...of which ${fileIssues.length} match the queried path '${path}'`

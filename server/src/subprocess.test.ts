@@ -43,7 +43,7 @@ describe("Endless Sky and the filesystem", () => {
     });
 
     it("can find an Endless Sky executable", () => {
-        assert.strictEqual(!!getExecutable(), true);
+        assert.strictEqual(!!getExecutable(() => {}), true);
     });
 
     describe("withPreparedFilesystem", () => {
@@ -73,8 +73,9 @@ describe("Endless Sky and the filesystem", () => {
 
     describe("parseWithSubprocess", function () {
         this.timeout(5000); // mac was exceeding 2000ms
+        const executable = getExecutable(()=>{})!;
         it("should be able to read stderr warnings for a plugin", async () => {
-            const output = await parsePluginWithSubprocess(pluginDir);
+            const output = await parsePluginWithSubprocess(pluginDir, executable);
             assert.deepStrictEqual(output.map(o => {
                 const { fullMessage, ...rest } = o;
                 return rest;
@@ -90,7 +91,7 @@ describe("Endless Sky and the filesystem", () => {
 
         it("should be able to read stderr warnings for core files", async () => {
             console.log('coreDir:', coreDir);
-            const output = await parseCoreDataWithSubprocess(coreDir);
+            const output = await parseCoreDataWithSubprocess(coreDir, executable);
             assert.deepStrictEqual(output.map(o => {
                 const { fullMessage, ...rest } = o;
                 return rest;

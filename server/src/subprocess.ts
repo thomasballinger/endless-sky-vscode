@@ -35,7 +35,7 @@ function getEslauncher2Executables(
 }
 
 // Return the executable to use for linting.
-export function getExecutable(preferencesExecutable?: string | undefined): string | undefined {
+export function getExecutable(sendErrorNot: (msg: string) => void, preferencesExecutable?: string | undefined): string | undefined {
   if (env.CI) {
     let hardcoded;
     // Use hardcoded paths in CI
@@ -58,10 +58,13 @@ export function getExecutable(preferencesExecutable?: string | undefined): strin
   if (preferencesExecutable) {
     if (existsSync(preferencesExecutable)) {
       return preferencesExecutable;
-    } else {
-      console.log('bad executable from preferences!');
-      return undefined
     }
+    const unescapedPreferencesExecutable = preferencesExecutable.replace(/\\ /g, ' ');
+    if (existsSync(unescapedPreferencesExecutable)) {
+      return unescapedPreferencesExecutable;
+    }
+    sendErrorNot("Endless Sky executable path from preferences does not exist. Please check the path in preferences.")
+    return undefined;
   }
 
   const candidates = [];
@@ -90,6 +93,11 @@ export function getExecutable(preferencesExecutable?: string | undefined): strin
   }
   // TODO add Linux locations
   const executable = candidates.filter((p) => existsSync(p))[0];
+  if (!executable) {
+    sendErrorNot!(
+      "No executable found! Please set the endlesssky executable location in settings."
+    );
+  }
   return executable;
 }
 
@@ -157,22 +165,12 @@ export async function withPreparedFilesystem<T>(
 
 export const parseCoreDataWithSubprocess = async (
   resourceDir: string,
-  executable?: string
+  executable: string,
 ) => {
   console.log('resourceDir:', resourceDir);
   const output = await withPreparedFilesystem(
     { resources: resourceDir },
     async ({ config, resources }) => {
-      if (executable && !existsSync(executable)) {
-        throw new Error("bad executable set in preferences!");
-      }
-      executable = getExecutable(executable);
-      if (!executable) {
-        throw new Error(
-          "No executable found! Please set the endlesssky executable location in settings."
-        );
-        // TODO propagate this to the client
-      }
       console.log('resources:', resources);
       const { stderr } = await execFileP(executable, [
         "-s",
@@ -190,21 +188,18 @@ export const parseCoreDataWithSubprocess = async (
 
 export const parsePluginWithSubprocess = async (
   pluginDir: string,
-  executable?: string
+  executable: string,
 ) => {
   let tmpPath: string | undefined;
+
+  if (!existsSync(executable)) {
+    throw new Error("bad executable: "+executable);
+  }
 
   const output = await withPreparedFilesystem(
     { pluginDir },
     async ({ config, resources, tmpPlugin }) => {
       tmpPath = tmpPlugin;
-      executable = getExecutable(executable);
-      if (!executable) {
-        throw new Error(
-          "No executable found! Please set the endlesssky executable location in settings."
-        );
-        // TODO propagate this to the client
-      }
       const { stderr } = await execFileP(executable, [
         "-s",
         "--config",
