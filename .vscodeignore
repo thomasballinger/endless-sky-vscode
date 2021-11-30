@@ -10,9 +10,12 @@
 !client/out/extension.js.map
 !server/out/server.js
 !server/out/server.js.map
+!server/out/main.js
+!server/out/main.js.map
 !syntaxes/endlesssky.tmLanguage.json
 !snippets.json
 !language-configuration.json
 !icon.png
 !README.md
 !package.json
+!LICENSE
