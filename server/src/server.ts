@@ -188,7 +188,7 @@ export const runServer = () => {
     }
     console.log(`found ${issues.length} issues`);
     //console.log(path, issues);
-    const fileIssues = issues.filter((i) => i.file && resolve(i.file) === path);
+    const fileIssues = issues.filter((i) => i.file && resolve(i.file) === resolve(path));
     //console.log(path, fileIssues);
     console.log(
       `...of which ${fileIssues.length} match the queried path '${path}'`
