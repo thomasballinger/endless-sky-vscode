@@ -46,6 +46,10 @@
                 "configuration": "./language-configuration.json"
             }
         ],
+        "commands": [{
+            "command": "endlesssky.talk",
+            "title": "Run Conversation"
+        }],
         "configuration": {
             "type": "object",
             "title": "Endless Sky configuration",

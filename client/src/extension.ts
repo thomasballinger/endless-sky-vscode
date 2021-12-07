@@ -1,5 +1,5 @@
 import * as path from "path";
-import { workspace, ExtensionContext } from "vscode";
+import { workspace, ExtensionContext, commands, window, Range } from "vscode";
 
 import {
   LanguageClient,
@@ -54,6 +54,64 @@ export function activate(context: ExtensionContext) {
 
   // Start the client. This will also launch the server
   client.start();
+
+  commands.registerCommand('endlesssky.talk', async () => {
+    const editor = window.activeTextEditor;
+
+    let document = editor.document;
+    let curPos = editor.selection.active;
+    let offset = document.offsetAt(curPos);
+
+    const selection = editor.selection;
+    const cursorLineNumber = document.lineAt(selection.start.line).lineNumber
+    let i = cursorLineNumber;
+    let conversationStartsLine: number|undefined = undefined;
+    while (i >= 0) {
+      const line = document.lineAt(i);
+      if (line.text.match(/\s*"?conversation/)) {
+        conversationStartsLine = i;
+        break;
+      }
+      i--;
+    }
+    if (conversationStartsLine === undefined) {
+      window.showErrorMessage('No conversation starts at or above the cursor');
+      return;
+    }
+
+    let firstNonConversationLine: number|undefined = undefined;
+    const startIndentation = document.lineAt(conversationStartsLine).text.match(/^\s*/)[0]
+    // first first non-empty line with less indentation
+    i = conversationStartsLine;
+    while (++i < document.lineCount - 1) {
+      const line = document.lineAt(i);
+      if (!line.text.match(/\S/)) continue; // skip whitespace lines
+      if (line.text.match(/^\s*#/)) continue; // skip comment lines
+      const indent = line.text.match(/^\s*/)[0];
+      if (indent.length < startIndentation.length) {
+        firstNonConversationLine = i;
+        break;
+      }
+    }
+    if (firstNonConversationLine === undefined) {
+      firstNonConversationLine = document.lineCount;
+    }
+    if (cursorLineNumber >= firstNonConversationLine) {
+      window.showErrorMessage('No conversation found with cursor inside');
+      return;
+    }
+
+    const firstLine = editor.document.lineAt(conversationStartsLine)
+    const lastLine = editor.document.lineAt(firstNonConversationLine - 1);
+    const textRange = new Range(firstLine.range.start, lastLine.range.end);
+    const text = document.getText(textRange);
+    const indent = firstLine.text.match(/^\s*/)[0];
+    const dedented = text.split(/\r?\n/).map(line => line.slice(indent.length)).join('\n') + '\n';
+    //console.log('text:', dedented);
+    await client.onReady();
+    client.sendNotification("custom/runConversation", {text: dedented, textDocumentUri: document.uri.toString()});
+});
+
 }
 
 export function deactivate(): Thenable<void> | undefined {

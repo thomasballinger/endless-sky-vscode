@@ -20,6 +20,7 @@ import {
   getExecutable,
   parseCoreDataWithSubprocess,
   parsePluginWithSubprocess,
+  runConversationWithSubprocess,
 } from "./subprocess";
 import { getPluginDir, getResourcesDir, isCoreDataFile } from "./plugin";
 import { exec } from "child_process";
@@ -123,6 +124,16 @@ export const runServer = () => {
     // Revalidate all open text documents
     documents.all().forEach(validateFromDisk);
   });
+
+  connection.onNotification("custom/runConversation", async (args: {text: string, textDocumentUri: string}) => {
+    // TODO is there a way to get document settings for this custom notification?
+    // are there document-scoped notifications?
+    const {textDocumentUri, text} = args;
+    const executable = getExecutable(sendErrorNot, lastExecutablePath);
+    if (!executable) return;
+    const path = url.fileURLToPath(textDocumentUri);
+    await runConversationWithSubprocess(text, executable, getResourcesDir(path)!);
+  })
 
   documents.onDidClose((e) => {
     documentSettings.delete(e.document.uri);

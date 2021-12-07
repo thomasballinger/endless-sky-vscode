@@ -1,6 +1,6 @@
-import { exec, execFile } from "child_process";
+import { ChildProcess, exec, execFile, spawn } from "child_process";
 import { homedir, tmpdir } from "os";
-import { platform, env } from "process";
+import { platform, env, off } from "process";
 import {
   readdirSync,
   existsSync,
@@ -167,7 +167,6 @@ export const parseCoreDataWithSubprocess = async (
   resourceDir: string,
   executable: string,
 ) => {
-  console.log('resourceDir:', resourceDir);
   const output = await withPreparedFilesystem(
     { resources: resourceDir },
     async ({ config, resources }) => {
@@ -216,6 +215,47 @@ export const parsePluginWithSubprocess = async (
     path.join(pluginDir, path.relative(tmpPath!, p))
   );
 };
+
+let lastConversationProcess: ChildProcess | undefined;
+
+export async function runConversationWithSubprocess(
+  text: string,
+  executable: string,
+  resourceDir: string,
+) {
+  await withPreparedFilesystem({
+    resources: resourceDir
+  }, async ({ config, resources }) => {
+    return new Promise<void>((resolve) => {
+      if (lastConversationProcess && lastConversationProcess.exitCode === null) {
+        lastConversationProcess.kill();
+      }
+      const p = spawn(executable, [
+        "--config",
+        config, // this should not matter at all
+        "--resources",
+        resources,
+        "--talk",
+      ]);
+      lastConversationProcess = p;
+
+      /*
+      p.stdout.on('data', (data) => {
+        console.log(`stdout: ${data}`);
+      });
+      p.stderr.on('data', (data) => {
+        console.log(`stderr: ${data}`);
+      })
+      */
+      p.stdin.write(text);
+      p.stdin.end();
+      p.on('close', (code: number) => {
+        resolve()
+      })
+    });
+  });
+};
+
 
 // DataNode::PrintTrace() always writes a blank line at the beginning
 // essages can't begin with ( because shipEntityErrors have that (and might not have a blank line)
