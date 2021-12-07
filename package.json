@@ -6,7 +6,7 @@
     "icon": "icon.png",
     "description": "Endless Sky data file support",
     "repository": "https://github.com/thomasballinger/endless-sky-vscode",
-    "version": "0.4.2",
+    "version": "0.5.0",
     "engines": {
         "vscode": "^1.60.0"
     },
@@ -46,10 +46,12 @@
                 "configuration": "./language-configuration.json"
             }
         ],
-        "commands": [{
-            "command": "endlesssky.talk",
-            "title": "Run Conversation"
-        }],
+        "commands": [
+            {
+                "command": "endlesssky.talk",
+                "title": "Run Conversation"
+            }
+        ],
         "configuration": {
             "type": "object",
             "title": "Endless Sky configuration",
