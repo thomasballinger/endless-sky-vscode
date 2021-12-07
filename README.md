@@ -11,6 +11,7 @@ When creating Endless Sky plugins, see [the GitHub wiki](https://github.com/endl
 - syntax highlighting
 - errors.txt messages shown inline
 - snippets for creating new planets, fleets, and stellar objects.
+- "Run Conversation" command for quickly testing conversations
 - more coming soon!
 
 # Config
