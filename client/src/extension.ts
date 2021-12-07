@@ -68,7 +68,7 @@ export function activate(context: ExtensionContext) {
     let conversationStartsLine: number|undefined = undefined;
     while (i >= 0) {
       const line = document.lineAt(i);
-      if (line.text.match(/\s*"?conversation/)) {
+      if (line.text.match(/^\s*"?conversation/)) {
         conversationStartsLine = i;
         break;
       }
