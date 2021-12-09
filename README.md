@@ -18,6 +18,15 @@ When creating Endless Sky plugins, see [the GitHub wiki](https://github.com/endl
 
 The plugin looks in several standard locations for Endless Sky installed on your computer, but you can choose which executable to use by setting the executable path in settings by searching for endless sky settings or setting `endlesssky.executablePath` in settings.json.
 
+In order to prevent all text files from being interpreted as Endless Sky files, add this to your settings:
+
+```
+    "files.associations": {
+	"**/*.text": "plaintext",
+	"**/data/**/*.txt": "endlesssky",
+    }
+```
+
 ## Contributing
 
 Please open issues with bugs and ideas [here](https://github.com/thomasballinger/endless-sky-vscode). If you're using this plugin I'd love to hear from you.
